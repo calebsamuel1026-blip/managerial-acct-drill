@@ -1,0 +1,978 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><title>Managerial Accounting Drill</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: one narrow working column; a sticky tab bar; the question card is the only boxed object. Same build as the MAR, RMI and ACG drills, for managerial accounting. */
+/* Same look as the RMI Exam 2 Room: Geist, black accent, daybreak gradient hairlines. */
+:root{--bg:#ffffff; --surface:#ffffff; --bg3:#f5f4f2; --ink:#09090b; --muted:#62626a; --line:#e7e5e4;--accent:#0b0b0d; --accent-ink:#ffffff; --accent-soft:#f5f4f2; --accent-text:#c2410c;--good:#15803d; --good-soft:#ecfdf3; --bad:#dc2626; --bad-soft:#fef2f2; --warn:#a16207; --warn-soft:#fefce8; --new:#62626a; --new-soft:#f5f4f2;--shadow:0 1px 2px rgba(0,0,0,.04),0 6px 16px -10px rgba(0,0,0,.12); --glow:rgba(255,92,40,.10);--daybreak:linear-gradient(90deg,#ffb020 0%,#ff5c28 26%,#f2367f 52%,#7c4dff 78%,#3355ff 100%); --dot:linear-gradient(135deg,#ffb020,#ff5c28 55%,#f2367f);--display:Geist,Inter,"Helvetica Neue",Arial,system-ui,sans-serif; --body:var(--display); --mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0a0a; --surface:#111111; --bg3:#1a1a1a; --ink:#ededed; --muted:#a1a1a1; --line:#242424;--accent:#fafafa; --accent-ink:#0a0a0a; --accent-soft:#1c1c1c; --accent-text:#ff8a3d;--good:#4ade80; --good-soft:#0f2a1a; --bad:#fb7185; --bad-soft:#2a1216; --warn:#fbbf24; --warn-soft:#2a2210; --new:#a1a1a1; --new-soft:#1c1c1c;--shadow:none; --glow:rgba(255,92,40,.14); color-scheme:dark;}}
+:root[data-theme="dark"]{--bg:#0a0a0a; --surface:#111111; --bg3:#1a1a1a; --ink:#ededed; --muted:#a1a1a1; --line:#242424;--accent:#fafafa; --accent-ink:#0a0a0a; --accent-soft:#1c1c1c; --accent-text:#ff8a3d;--good:#4ade80; --good-soft:#0f2a1a; --bad:#fb7185; --bad-soft:#2a1216; --warn:#fbbf24; --warn-soft:#2a2210; --new:#a1a1a1; --new-soft:#1c1c1c;--shadow:none; --glow:rgba(255,92,40,.14); color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);margin:0}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 64px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header h1{font:800 clamp(26px,5vw,34px)/1.1 var(--display);letter-spacing:-.01em;margin:0;text-wrap:balance}
+header p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:4px;margin:18px 0 20px;border-bottom:1px solid var(--line);padding-top:6px;overflow-x:auto}
+.tab{appearance:none;background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);font:600 15px var(--body);padding:8px 12px;cursor:pointer;margin-bottom:-1px;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+.tab:focus-visible,.btn:focus-visible,.opt:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.eyebrow{font:600 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.timer{font:600 15px/1 ui-monospace,Consolas,monospace;padding:5px 10px;border-radius:999px;border:1px solid var(--line);font-variant-numeric:tabular-nums}.timer.low{color:#c53030;border-color:#c53030}.timer.out{background:#c53030;color:#fff;border-color:#c53030}
+.batchbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;margin-bottom:12px}
+.pips{display:flex;gap:4px;flex-wrap:wrap}
+.pip{width:22px;height:6px;border-radius:3px;background:var(--line)}
+.pip.cur{background:var(--muted)} .pip.ok{background:var(--good)} .pip.no{background:var(--bad)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px clamp(16px,4vw,28px);margin-bottom:16px}
+.qmeta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-bottom:12px}
+.chip{display:inline-block;font:600 12px var(--body);padding:2px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.chip.weak{background:var(--bad-soft);color:var(--bad)} .chip.shaky{background:var(--warn-soft);color:var(--warn)} .chip.solid{background:var(--good-soft);color:var(--good)} .chip.new{background:var(--new-soft);color:var(--new)}
+.src{font:500 12px var(--mono);color:var(--muted)}
+.qtext{font:600 18px/1.5 var(--body);white-space:pre-line;margin:0 0 16px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:11px 14px;font:16px/1.45 var(--body);color:var(--ink);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default}
+.opt .L{font:700 14px/1.6 var(--mono);color:var(--muted);flex:none;width:18px}
+.opt.sel{background:var(--accent-soft);border-color:var(--accent)} .opt.sel .L{color:var(--accent)}
+.opt.right{background:var(--good-soft);border-color:var(--good)} .opt.right .L{color:var(--good)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)} .opt.wrong .L{color:var(--bad)}
+.qgrid{display:flex;flex-wrap:wrap;gap:4px;margin-top:14px}
+.qgrid button{appearance:none;width:30px;height:28px;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--muted);font:500 12px var(--mono);cursor:pointer;padding:0}
+.qgrid button.done{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.qgrid button.cur{outline:2px solid var(--ink);outline-offset:1px}
+.qgrid button.ok{background:var(--good-soft);color:var(--good);border-color:var(--good)} .qgrid button.no{background:var(--bad-soft);color:var(--bad);border-color:var(--bad)}
+.fb{margin-top:16px;border-left:3px solid var(--good);padding:4px 0 4px 14px}
+.fb.no{border-color:var(--bad)}
+.fb h3{margin:0 0 4px;font:700 16px var(--display)}
+.fb p{margin:0}
+.fb .ref{margin-top:6px;font:500 13px var(--mono);color:var(--muted)}
+.why{margin-top:16px;background:var(--warn-soft);border-radius:10px;padding:14px 16px;display:grid;gap:8px}
+.why label{font:700 15px var(--display)}
+.why .hint{color:var(--ink);opacity:.8}
+textarea{width:100%;min-height:76px;resize:vertical;font:15px/1.45 var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.saved{border-left:3px solid var(--warn);padding:2px 0 2px 12px;margin-top:12px;font-size:15px}
+.saved b{font:700 13px var(--mono);color:var(--muted);display:block;text-transform:uppercase;letter-spacing:.05em}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center}
+.btn{appearance:none;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);font:600 15px var(--body);padding:10px 18px;border-radius:8px;cursor:pointer}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn.danger{border-color:var(--bad);background:transparent;color:var(--bad)}
+.btn.sm{padding:6px 12px;font-size:14px}
+.hint{font-size:13px;color:var(--muted)}
+.big{font:800 44px/1 var(--display);font-variant-numeric:tabular-nums}
+.sumgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin:14px 0 6px}
+h2{font:700 21px/1.25 var(--display);margin:28px 0 10px;text-wrap:balance}
+h3.mod{font:700 17px var(--display);margin:24px 0 8px}
+ul.plain{margin:6px 0;padding-left:20px} ul.plain li{margin:3px 0}
+.missed{display:grid;gap:10px;margin-top:8px}
+.missed>div{border-top:1px solid var(--line);padding-top:12px;min-width:0}
+.missed b{display:block}
+.mrow{display:grid;gap:4px;font-size:15px}
+.mrow .you{color:var(--bad)} .mrow .ans{color:var(--good)}
+.trow{display:grid;grid-template-columns:minmax(0,1fr) 120px 74px;gap:12px;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
+.trow .nm{min-width:0}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent)}
+.bar i.weak{background:var(--bad)} .bar i.shaky{background:var(--warn)} .bar i.solid{background:var(--good)} .bar i.new{background:var(--line)}
+.tnum{font:500 13px var(--mono);color:var(--muted);text-align:right}
+.guide section{border-top:1px solid var(--line);padding-top:6px}
+.guide h4{font:700 16px var(--display);margin:14px 0 4px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.note{font-size:14px;color:var(--muted);margin:4px 0 0}
+.callout{background:var(--accent-soft);border-radius:8px;padding:12px 14px;margin:12px 0;font-size:14px}
+.sync{font:500 12px var(--mono);color:var(--muted)}
+select{font:15px var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 10px;max-width:100%}
+@media (max-width:520px){.trow{grid-template-columns:minmax(0,1fr) 70px;}.trow .tnum{grid-column:2}.trow .bar{grid-column:1/-1;order:3}}
+.slides{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.slidebtn{appearance:none;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--ink);font:600 13px var(--body);padding:6px 12px;border-radius:999px;cursor:pointer}
+.slidebtn:hover{background:var(--accent);color:var(--accent-ink)}
+.slidebtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+dialog.sv{border:0;padding:0;background:var(--surface);color:var(--ink);border-radius:12px;width:min(1100px,calc(100vw - 24px));max-height:calc(100dvh - 24px);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog.sv::backdrop{background:rgba(10,5,8,.7)}
+.sv-top{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.sv-top b{font:700 16px var(--display);flex:1;min-width:0}
+.sv-img{display:block;width:100%;height:auto;max-height:calc(100dvh - 140px);object-fit:contain;background:#fff}
+.sv-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-top:1px solid var(--line)}
+.sv .btn{padding:7px 14px;font-size:14px}
+@media (prefers-reduced-motion:no-preference){.card{animation:in .18s ease-out}@keyframes in{from{transform:translateY(4px);opacity:.6}to{transform:none;opacity:1}}}
+.pred .predtop{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;margin:6px 0 10px}
+.pred .predside{max-width:320px}
+.up{color:var(--good)} .down{color:var(--bad)}
+.predsvg{display:block;width:100%;height:auto;margin:6px 0 10px}
+.predsvg .pg{stroke:var(--line);stroke-width:1}
+.predsvg .pt{fill:var(--muted);font:12px var(--body)}
+.predsvg .pb{fill:var(--accent);opacity:.14}
+.predsvg .pl{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linejoin:round}
+.predsvg .pd{fill:var(--accent)}
+.predline{margin:6px 0 0;font-size:15px}
+dialog.nd{border:0;border-radius:12px;padding:22px;width:min(420px,calc(100vw - 32px));background:var(--surface);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog.nd::backdrop{background:rgba(5,10,8,.7)}
+dialog.nd h2{margin:0 0 6px}
+.nd input{width:100%;font:500 17px var(--body);padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);margin:12px 0 14px}
+.nd input:focus{outline:2px solid var(--accent);outline-offset:1px}
+/* ---- Superday Room look ---- */
+body{background:radial-gradient(1100px 420px at 50% -160px,var(--glow),transparent 70%) no-repeat,var(--bg);-webkit-font-smoothing:antialiased}
+.wrap{padding-block:14px 64px}
+.top{display:flex;align-items:center;gap:10px;min-height:58px;padding:8px 10px 8px 14px;border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand svg{width:28px;height:28px;flex:none}
+.brand svg rect{fill:var(--ink)} .brand svg path{stroke:var(--bg)}
+.brand b{font:700 16px/1 var(--display);letter-spacing:-.04em;white-space:nowrap}
+.brand b span{font-weight:500;color:var(--muted)}
+.top .sp{flex:1}
+.me{display:flex;align-items:center;gap:6px;margin:0;font-size:13.5px;color:var(--muted);min-width:0}
+.me b{color:var(--ink);max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.linkbtn{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 13px var(--body);border-radius:999px;padding:6px 12px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.linkbtn:hover{background:var(--bg3)}
+.hero{padding:34px 2px 4px}
+.hero .eyebrow{color:var(--accent-text)}
+.hero h1{font:700 clamp(36px,7vw,54px)/1.02 var(--display);letter-spacing:-.05em;margin:10px 0 0;text-wrap:balance}
+.hero h1 i{display:inline-block;width:.2em;height:.2em;border-radius:50%;background:var(--dot);margin-left:.04em;vertical-align:baseline}
+.hero p{margin:12px 0 0;color:var(--muted);font-size:16px;max-width:52ch}
+.sync{font:500 12px var(--mono);color:var(--muted);display:block;margin-top:6px}
+.tabs{display:inline-flex;width:max-content;max-width:100%;gap:2px;margin:22px 0 22px;padding:4px;border:1px solid var(--line);border-radius:999px;background:var(--surface);box-shadow:0 1px 2px rgba(0,0,0,.04);top:calc(env(safe-area-inset-top,0px) + 8px)}
+.tab{border:0;margin:0;border-radius:999px;padding:8px 16px;font:600 14px var(--body);color:var(--muted);white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--accent);color:var(--accent-ink)}
+.eyebrow{font:600 11.5px var(--mono);letter-spacing:.1em;color:var(--accent-text)}
+.card{position:relative;overflow:hidden;border-radius:16px;padding:30px clamp(18px,4vw,32px) 26px;box-shadow:var(--shadow)}
+.card::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:var(--daybreak);opacity:.85}
+.card h2{font:700 26px/1.15 var(--display);letter-spacing:-.035em}
+h2{font:700 24px/1.2 var(--display);letter-spacing:-.035em}
+h3.mod{font:700 18px var(--display);letter-spacing:-.025em}
+.qtext{font:600 22px/1.4 var(--display);letter-spacing:-.025em;margin:2px 0 20px}
+.chip{font:600 12px var(--body);padding:3px 10px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+.chip.weak{border-color:color-mix(in srgb,var(--bad) 35%,transparent)} .chip.shaky{border-color:color-mix(in srgb,var(--warn) 35%,transparent)} .chip.solid{border-color:color-mix(in srgb,var(--good) 35%,transparent)}
+.opts{gap:10px}
+.opt{align-items:center;gap:14px;background:var(--surface);border-radius:12px;padding:13px 16px;box-shadow:0 1px 2px rgba(0,0,0,.03);transition:border-color .15s,background .15s}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt .L{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--line);font:600 12px var(--mono);color:var(--muted)}
+.opt.sel{background:var(--bg3);border-color:var(--ink)} .opt.sel .L{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.opt.right .L{background:var(--good);color:#fff;border-color:var(--good)} .opt.wrong .L{background:var(--bad);color:#fff;border-color:var(--bad)}
+.fb{border-left:0;padding:16px 18px;border-radius:12px;background:var(--good-soft);margin-top:18px}
+.fb.no{background:var(--bad-soft)}
+.fb h3{font:700 17px var(--display);letter-spacing:-.02em;color:var(--good)} .fb.no h3{color:var(--bad)}
+.btn{border-radius:999px;padding:11px 20px;font:600 15px var(--body);display:inline-flex;align-items:center;gap:10px;transition:background .15s,box-shadow .15s}
+.btn:not(.ghost):not(.danger){background:#0b0b0d;border-color:#0b0b0d;color:#fff}
+.btn:not(.ghost):not(.danger):hover{background:#26262b;box-shadow:0 10px 24px -12px rgba(255,92,40,.7)}
+.btn:not(.ghost):not(.danger)::after{content:"→";display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--dot);color:#fff;font-size:13px;line-height:1}
+:root[data-theme="dark"] .btn:not(.ghost):not(.danger){background:#fafafa;border-color:#fafafa;color:#0a0a0a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn:not(.ghost):not(.danger){background:#fafafa;border-color:#fafafa;color:#0a0a0a}}
+.btn.ghost{background:var(--surface);border-color:var(--line);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.btn.ghost:hover{background:var(--bg3)}
+.btn:disabled{opacity:.45;cursor:default}
+.pip{height:4px;border-radius:2px}
+.pip.cur{background:var(--daybreak)}
+.bar{height:6px;border-radius:3px}
+.qgrid button{border-radius:8px;width:32px;height:30px}
+.qgrid button.done{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.callout{background:var(--bg3);border:1px solid var(--line);border-radius:12px}
+.slidebtn{background:var(--surface);border:1px solid var(--line);color:var(--ink);font:600 12.5px var(--mono);padding:7px 13px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.slidebtn:hover{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+dialog.sv,dialog.nd{border-radius:18px;box-shadow:0 30px 60px -12px rgba(0,0,0,.25),0 18px 36px -18px rgba(0,0,0,.3)}
+dialog.sv::backdrop,dialog.nd::backdrop{background:rgba(10,10,10,.45);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+dialog.nd{padding:30px 26px 24px;text-align:center;overflow:hidden}
+dialog.nd::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--daybreak)}
+dialog.nd .mark{width:44px;height:44px;margin:0 auto 14px;display:block}
+dialog.nd .mark rect{fill:var(--ink)} dialog.nd .mark path{stroke:var(--bg)}
+dialog.nd h2{font:700 24px/1.15 var(--display);letter-spacing:-.035em}
+.nd input{border-radius:12px;text-align:center;background:var(--surface);padding:13px 14px}
+.nd .btn{justify-content:center}
+footer.foot{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+@media (max-width:520px){.me>span{display:none}.brand b span{display:none}.hero{padding-top:26px}.qtext{font-size:19px}.tab{padding:7px 10px;font-size:13px}.tabs{scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}}
+/* drill-specific pieces in the Room look */
+.why{background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);border-radius:12px;padding:16px 18px}
+.why label{font:700 17px var(--display);letter-spacing:-.02em}
+textarea,select{border-radius:12px;font-family:var(--body)}
+.saved{border-left:0;background:var(--bg3);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.mrow .you{color:var(--bad)} .mrow .ans{color:var(--good)}
+.known{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}
+.btn.sm{padding:7px 14px;font-size:13px}
+.btn.sm::after{display:none!important}
+</style></head><body>
+
+<div class="wrap">
+<header class="top"><div class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5"/><path d="M9 23.5 16 9l7 14.5M11.6 18h8.8" fill="none" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="dga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb020"/><stop offset=".55" stop-color="#ff5c28"/><stop offset="1" stop-color="#f2367f"/></linearGradient></defs><circle cx="24.6" cy="9.2" r="1.85" fill="url(#dga)"/></svg><b>Managerial <span>Accounting Room</span></b></div><div class="sp"></div><p class="me"><span>Studying as</span> <b id="who"></b> <button class="linkbtn" id="switch">Switch</button></p></header>
+<div class="hero"><span class="eyebrow">Managerial Accounting · Ch 8, 9, 10, 11</span><h1>Learn it, then test it<i aria-hidden="true"></i></h1><p>Budgeting, flexible budgets, standard cost variances, and decentralized performance (ROI, residual income, transfer pricing). Go through it in order to learn, or drill your weak spots. <span class="sync" id="sync"></span></p></div>
+<nav class="tabs" role="tablist">
+  <button class="tab" role="tab" aria-selected="true" data-v="drill">Drill</button>
+  <button class="tab" role="tab" aria-selected="false" data-v="exam">Practice exam</button>
+  <button class="tab" role="tab" aria-selected="false" data-v="misses">My misses</button>
+  <button class="tab" role="tab" aria-selected="false" data-v="progress">Progress</button>
+  <button class="tab" role="tab" aria-selected="false" data-v="guide">Study guide</button>
+</nav>
+<main id="view"></main>
+<footer class="foot"><span>Managerial accounting study drill</span><span>Not an official course site</span></footer>
+</div>
+<dialog class="nd" id="nd" aria-labelledby="nd-t">
+  <form id="nd-form"><svg viewBox="0 0 32 32" aria-hidden="true" class="mark"><rect width="32" height="32" rx="7.5"/><path d="M9 23.5 16 9l7 14.5M11.6 18h8.8" fill="none" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="dgb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb020"/><stop offset=".55" stop-color="#ff5c28"/><stop offset="1" stop-color="#f2367f"/></linearGradient></defs><circle cx="24.6" cy="9.2" r="1.85" fill="url(#dgb)"/></svg><h2 id="nd-t">What's your name?</h2>
+  <p class="hint">Your answers, scores, weak topics and the reasons you type for each miss are saved under this name. Type the same name on any device to pick up where you left off.</p>
+  <input id="nd-in" autocomplete="nickname" maxlength="40" placeholder="Your name" aria-label="Your name">
+  <button class="btn" type="submit" style="width:100%;justify-content:center">Start studying</button><p class="hint" id="nd-err"></p><div class="known" id="known"></div></form>
+</dialog>
+<dialog class="sv" id="sv" aria-labelledby="sv-t">
+  <div class="sv-top"><b id="sv-t"></b><a class="btn ghost" id="sv-open" target="_blank" rel="noopener">Full size</a><button class="btn ghost" id="sv-x">Close</button></div>
+  <img class="sv-img" id="sv-img" alt="">
+  <div class="sv-nav"><button class="btn ghost" id="sv-prev">← Prev slide</button><span class="hint">Arrow keys move, Esc closes</span><button class="btn ghost" id="sv-next">Next slide →</button></div>
+</dialog>
+
+<script>
+"use strict";
+const SECS={b8:"Ch 8 · Master Budgeting",f9:"Ch 9 · Flexible Budgets & Performance Analysis",s10:"Ch 10 · Standard Costs & Variances",d11:"Ch 11 · Decentralized Organizations & Transfer Pricing"};
+const SEC_ORDER=["b8","f9","s10","d11"];
+// share of the 40-question practice exam per chapter
+const SEC_EXAM={b8:14,f9:8,s10:9,d11:9};
+const TOPICS={
+"b-basics":{s:"b8",n:"Budget basics & types of budgets",g:["A budget is a detailed plan for the future in numbers. Planning = set goals and decide how to reach them. Controlling = compare actual results to the budget.","Master budget = the whole-company plan for ONE planned activity level (also called static or planning budget).","Benefits: forces planning, communicates and coordinates, gives a benchmark for evaluating performance.","Continuous (perpetual) budget / rolling forecast: always projects the next 12 months. Zero-based: start at $0 and justify every dollar. Participative = self-imposed: lower-level managers help (more realistic, more motivating; but slower, and slack can creep in).","Order: sales → production (or purchases for a merchandiser) → DM, DL, MOH → S&A → cash budget → budgeted income statement and balance sheet."]},
+"b-sales":{s:"b8",n:"Sales budget (cash vs. credit sales)",g:["Sales revenue = budgeted units × budgeted price. It is the starting point and flows to the budgeted income statement.","Split into cash sales and credit sales (sales on account, collected later, NOT credit cards). Trendy Totes: 10% cash, 90% credit."]},
+"b-collect":{s:"b8",n:"Cash collections & accounts receivable",g:["Cash collected THIS month = this month's cash sales + this month's credit × % collected now + last month's credit × % + two months ago credit × %.","Always take the credit % first (sales × 90%), then the collection % (× 40%).","Look BACK, never forward: future months' sales haven't happened.","Ending A/R = what is NOT collected yet: this month's credit × (100% − % collected now) + last month's credit × the last %."]},
+"b-prod":{s:"b8",n:"Production budget",g:["Units to produce = budgeted sales + desired ending finished goods − beginning finished goods.","Ending inventory is usually a % of NEXT month's sales; beginning inventory = last month's ending (so a % of THIS month's sales).","Quarter total: beginning = start of quarter, ending = end of quarter (don't add the months)."]},
+"b-dm":{s:"b8",n:"Direct materials purchases budget",g:["Driven by PRODUCTION, not sales.","DM needed = units produced × materials per unit.","Purchases = DM needed + desired ending DM − beginning DM. Ending DM is usually a % of next month's production needs.","Multiply purchases in yards/lbs by price per unit to get dollars."]},
+"b-pay":{s:"b8",n:"Cash payments for purchases & accounts payable",g:["Cash paid this month = % of this month's purchases + % of last month's + % of two months ago.","Ending A/P = what is NOT paid yet: this month × (100% − % paid now) + last month × the last %."]},
+"b-dl":{s:"b8",n:"Direct labor & manufacturing overhead budgets",g:["DL cost = units produced × hours per unit × rate per hour. Usually paid in the month incurred.","MOH = variable rate × units produced + fixed overhead. Paid as incurred EXCEPT depreciation (noncash)."]},
+"b-cogs":{s:"b8",n:"Unit cost, COGS & ending inventory",g:["Unit cost = DM + DL + MOH per unit (Trendy Totes: $6 + $5 + $4 = $15; overhead 80% of DL $).","Budgeted COGS = units SOLD × unit cost. Ending finished goods = units left × unit cost."]},
+"b-sa":{s:"b8",n:"Selling & administrative expense budget",g:["Variable S&A (commissions, shipping) depends on units sold; bad debt is a % of credit sales; fixed S&A stays the same.","Bad debt expense and depreciation are NONCASH: they are expenses but are left out of cash payments."]},
+"b-cash":{s:"b8",n:"The cash budget & financing",g:["Beginning cash + collections = cash available. − Cash disbursements (no depreciation, no bad debt) − minimum cash balance = excess or (deficiency).","Deficiency → borrow (round UP to the required increment, e.g. $1,000). Excess → repay debt.","Borrow at the beginning of the month, repay at the end. Interest = principal × annual rate × months/12.","Ending cash of one month = beginning cash of the next."]},
+"b-stmt":{s:"b8",n:"Budgeted (pro forma) income statement & balance sheet",g:["Pro forma = projected. Sales − COGS = gross margin − S&A = operating income − interest = net income.","Balance sheet: ending cash from the cash budget, A/R and A/P from the schedules, raw materials and finished goods at cost, equipment net of depreciation, RE = beginning RE + net income."]},
+"b-merch":{s:"b8",n:"Merchandising purchases budget",g:["Purchases = budgeted COGS + desired ending inventory − beginning inventory, all at COST.","COGS = sales × (100% − gross profit %). A 40% gross profit means COGS = 60% of sales."]},
+"f-basics":{s:"f9",n:"Variances & the flexible budget idea",g:["Variance = actual vs. budget. Favorable (F) = income higher than budgeted (more revenue or less cost). Unfavorable (U) = income lower.","Management by exception = only investigate large variances.","Master budget variance = actual vs. master budget. Problem: different volumes (apples to oranges).","Flexible budget = what revenues and costs SHOULD have been at the ACTUAL activity level. Same prices and fixed costs as the master budget.","Activity (volume) variance = flexible vs. master. Revenue/spending (flexible budget) variance = actual vs. flexible. They add up to the master budget variance."]},
+"f-flex":{s:"f9",n:"Preparing the flexible budget & splitting the variance",g:["Flexible budget: budgeted price × actual units; variable cost per unit × actual units; fixed costs unchanged.","Activity variance on costs is U when volume rises (more units = more expected cost) and F when it falls; on revenue the opposite.","Revenue variance = (actual price − budgeted price) × actual units. Fixed costs only have spending variances.","Fill-in reports: back out the flexible budget from actual ± variance, then find per-unit amounts and rebuild the master budget."]},
+"s-basics":{s:"s10",n:"Standards & variance formulas",g:["Ideal (perfection) standards assume perfect conditions; practical (attainable) standards allow normal waste.","Standard cost per unit = standard quantity × standard price.","DM: price variance = |AP − SP| × qty PURCHASED; quantity variance = |qty USED − STQ| × SP.","DL: rate variance = |AR − SR| × actual hours; efficiency variance = |actual hours − standard hours| × SR.","STQ (standard quantity allowed) = standard per unit × units ACTUALLY produced."]},
+"s-dm":{s:"s10",n:"Direct materials price & quantity variances",g:["Paid more than standard → price U. Used more than allowed → quantity U.","If AP isn't given, AP = total cost ÷ quantity purchased.","Price + quantity = DM spending variance (when bought = used)."]},
+"s-dl":{s:"s10",n:"Direct labor rate & efficiency variances",g:["Actual rate = total labor cost ÷ actual hours.","Rate U = paid more per hour; efficiency U = more hours than allowed.","Rate + efficiency = DL spending variance; + activity variance = DL master budget variance."]},
+"s-interp":{s:"s10",n:"Interpreting variances & trade-offs",g:["Cheap materials (price F) often cause waste (quantity U) and extra labor time (efficiency U).","Higher-paid, skilled workers (rate U) may work faster (efficiency F).","Purchasing controls the price variance; production controls quantity and efficiency."]},
+"d-basics":{s:"d11",n:"Decentralization",g:["Decentralization = top management delegates decisions to segment managers.","Advantages: frees top management, uses expert knowledge, better customer relations, training, motivation/retention.","Disadvantages: possible bad decisions, poor coordination, duplicated costs, goal congruence issues (managers acting for themselves, not the company)."]},
+"d-centers":{s:"d11",n:"Responsibility centers",g:["Cost center: only costs (plant, production dept., accounting, HR).","Profit center: revenues and costs (a store, a product line); judged on actual vs. budgeted profit.","Investment center: revenues, costs AND assets (a large division); judged on ROI and residual income."]},
+"d-roi":{s:"d11",n:"Return on investment (ROI)",g:["ROI = operating income ÷ average operating assets.","ROI = sales margin (operating income ÷ sales) × capital turnover (sales ÷ assets).","Raise ROI by improving margin or turnover (more sales per asset, cut unproductive assets).","Drawback: a manager may reject a project that beats the company's target but is below the division's current ROI."]},
+"d-ri":{s:"d11",n:"Residual income & new-project decisions",g:["Residual income = operating income − (target rate × assets). Positive = beats the target.","Project RI = project income − target × project investment; if positive, it raises the division's RI → manager and company agree.","On ROI, managers compare the project with the DIVISION'S ROI; the company compares with its TARGET. When those differ, you get a goal congruence problem.","Drawback of RI: can't compare divisions of different sizes."]},
+"d-tp":{s:"d11",n:"Transfer pricing",g:["Transfer price = price one division charges another. Revenue to the seller, cost to the buyer, NO effect on total company profit.","Methods: market price, negotiated price, cost or cost-plus (when no outside market).","Lowest acceptable TP: excess capacity → variable (avoidable) cost; full capacity → market price. Highest acceptable TP: market price. Most fair: market price.","Company view of buying outside: compare the outside price with the AVOIDABLE cost of making it inside (ignore the transfer price)."]}
+};
+
+const QB=[];
+function Q(id,t,q,o,x,ref,a){QB.push({id,t,src:"Practice",q,o,x,ref,a:0})}
+function S(id,t,q,o,x,ref,a){QB.push({id,t,src:"Sample quiz",q,o,x,ref,a:0})}
+function P(id,t,q,o,x,ref,a){QB.push({id,t,src:"Canvas quiz pool",q,o,x,ref,a:0})}
+function X(id,t,q,o,x,ref,a){QB.push({id,t,src:"Canvas Practice Exam 3",q,o,x,ref,a:0})}
+function W(id,t,q,o,x,ref,a){QB.push({id,t,src:"Commonly missed",q,o,x,ref,a:0})}
+// Managerial accounting drill questions. Answer is always the first option. File order = Learn-in-order path.
+Q("b001","b-basics","What is a budget?",["A detailed plan for the future, usually expressed in quantitative terms", "A record of last year's actual results", "A list of the company's assets and liabilities", "A report prepared only for outside investors", "A tax return filed with the IRS"],"A budget is a detailed plan for the FUTURE, usually in numbers (dollars, units). It looks forward, not backward. It helps managers plan (set goals and decide how to reach them) and control (compare actual results to the plan).","Ch 8 outline p.1");
+Q("b002","b-basics","Planning and controlling are two main jobs of managers. Which statement describes CONTROLLING?",["Evaluating actual results against the budget to make sure the company is on track", "Developing goals and deciding how to reach them", "Hiring the employees who prepare the budget", "Choosing which products to stop selling", "Setting the sales price of each product"],"Planning = developing goals and figuring out how to achieve them. Controlling = comparing actual results to the budget to see if you are on track. The budget helps with both.","Ch 8 outline p.1");
+Q("b003","b-basics","The master budget is also called a",["static budget or planning budget", "flexible budget", "capital budget", "zero-based budget", "performance report"],"The master budget is the comprehensive plan for the whole organization. It is built for ONE planned level of activity, so it is also called a static budget or planning budget. (A flexible budget adjusts to actual activity; that is Chapter 9.)","Ch 8 outline p.1");
+Q("b004","b-basics","Which of the following is NOT one of the benefits of budgeting listed in the notes?",["It guarantees the company will be profitable", "It forces managers to plan for the future", "It communicates management's plans and coordinates activities", "It provides a benchmark for evaluating performance", "All of these are listed benefits"],"The three benefits: (1) forces managers to plan ahead, (2) communicates plans and coordinates activities, (3) gives a benchmark to judge performance. A budget never guarantees profit; it is just a plan.","Ch 8 outline p.1");
+Q("b005","b-basics","A company always budgets the next 12 months. As soon as January ends, it adds next January to the budget. This is a",["continuous (perpetual) budget, also called a rolling forecast", "zero-based budget", "participative budget", "static budget", "top-down budget"],"A continuous or perpetual budget is updated so the next 12 months are always projected. When one month finishes, the same month next year is added. It is also called a rolling forecast.","Ch 8 outline p.1; transcript");
+Q("b006","b-basics","Under which approach must every manager start at $0 and justify every dollar in their budget?",["Zero-based budgeting", "Continuous budgeting", "Participative budgeting", "Incremental budgeting from last year", "Flexible budgeting"],"Zero-based budgeting: everyone starts at $0 and must justify every dollar. Companies use it because simply adding a little to last year's budget, year after year, can let costs grow out of control.","Ch 8 outline p.1; transcript");
+Q("b007","b-basics","A participative budget is also called a",["self-imposed budget", "top-down budget", "zero-based budget", "rolling forecast", "flexible budget"],"Participative = many levels of management, including lower-level managers, help prepare the budget. Because managers help set their own targets, it is called a self-imposed budget. Top-down is the opposite (top management sets it).","Ch 8 outline p.1");
+Q("b008","b-basics","Which is an ADVANTAGE of participative budgeting?",["Lower-level managers know day-to-day operations and may create more realistic budgets", "It is faster and simpler than a top-down budget", "Managers never build slack into the budget", "Top management makes every decision", "It removes the need for a sales budget"],"Advantages: lower-level managers have the best day-to-day knowledge, and people are more motivated by budgets they helped create. Disadvantages: it takes more time and is more complex, and managers may build in slack.","Ch 8 outline p.1");
+Q("b009","b-basics","A manager asks for $50,000 more than she really needs so her budget is easier to meet. This is called",["budgetary slack", "zero-based budgeting", "a favorable variance", "a rolling forecast", "management by exception"],"Building slack = padding the budget to make it easier to achieve or to have a cushion if cuts come. It is a disadvantage of participative budgeting.","Ch 8 outline p.1; transcript");
+Q("b010","b-basics","Which budget is the STARTING POINT of the master budget?",["Sales budget", "Production budget", "Cash budget", "Budgeted balance sheet", "Direct materials budget"],"Everything else depends on how much you expect to sell, so the sales budget comes first. Production depends on sales; materials, labor and overhead depend on production; the cash budget uses all of them.","Ch 8 outline p.3");
+Q("b011","b-basics","A MERCHANDISING company prepares which budget that a manufacturer does not?",["Purchases budget", "Production budget", "Direct materials budget", "Direct labor budget", "Manufacturing overhead budget"],"Merchandisers buy finished goods to resell, so they prepare a purchases budget. Manufacturers make products, so they prepare production, direct materials, direct labor and manufacturing overhead budgets instead.","Ch 8 outline p.1");
+Q("b012","b-basics","Which is the correct order of the manufacturing budgets?",["Sales → production → direct materials, direct labor, overhead → cash budget → budgeted statements", "Production → sales → cash budget → direct materials", "Cash budget → sales → production → budgeted statements", "Budgeted balance sheet → sales → production", "Direct materials → sales → production → cash budget"],"Sales drives production. Production drives the three manufacturing cost budgets. All of those (plus S&A) feed the cash budget. Last come the budgeted income statement and balance sheet.","Ch 8 outline p.1; transcript");
+Q("b013","b-basics","Trendy Totes' credit sales are customers who",["pay Trendy Totes later, over time (sales on account)", "pay with a credit card", "pay in cash at the time of sale", "never pay", "return the product"],"In this chapter, credit sales means sales ON ACCOUNT: the customer owes the company and pays later. It does not mean paying with a credit card.","Transcript: sales budget");
+Q("b014","b-basics","Why do budgets for cash collections look BACK at prior months' sales?",["Some of the cash collected this month comes from credit sales made in earlier months", "Future months' sales are already collected", "Cash sales are always collected the next month", "Prior months must be re-budgeted", "Accounts receivable only includes cash sales"],"To find the cash collected in June, you add everything that comes in during June: June's cash sales, part of June's credit sales, and the leftover parts of May's and April's credit sales. July's sales have not happened yet, so they never count toward June.","Transcript: cash collections");
+Q("bs0","b-sales","Harbor Goods expects to sell 1,750 units in January, 1,800 in February and 700 in March at $25 each. What is budgeted sales revenue for the quarter?",["$106,250", "$17,500", "$4,250", "$88,750", "$95,625"],"Sales budget = units × budgeted price. Quarter units = 1,750 + 1,800 + 700 = 4,250. × $25 = $106,250. This total flows to the budgeted income statement.","Ch 8 outline p.3");
+Q("bs1","b-sales","Sunrise Cycles expects to sell 650 units in April, 1,800 in May and 600 in June at $25 each. What is budgeted sales revenue for the quarter?",["$76,250", "$15,000", "$3,050", "$61,250", "$68,625"],"Sales budget = units × budgeted price. Quarter units = 650 + 1,800 + 600 = 3,050. × $25 = $76,250. This total flows to the budgeted income statement.","Ch 8 outline p.3");
+Q("bs2","b-sales","Pine Ridge Candles expects to sell 1,550 units in August, 1,000 in September and 1,500 in October at $40 each. What is budgeted sales revenue for the quarter?",["$162,000", "$60,000", "$4,050", "$102,000", "$145,800"],"Sales budget = units × budgeted price. Quarter units = 1,550 + 1,000 + 1,500 = 4,050. × $40 = $162,000. This total flows to the budgeted income statement.","Ch 8 outline p.3");
+Q("bs3","b-sales","Blue Mesa Pottery expects to sell 1,850 units in February, 750 in March and 1,200 in April at $18 each. What is budgeted sales revenue for the quarter?",["$68,400", "$21,600", "$3,800", "$46,800", "$61,560"],"Sales budget = units × budgeted price. Quarter units = 1,850 + 750 + 1,200 = 3,800. × $18 = $68,400. This total flows to the budgeted income statement.","Ch 8 outline p.3");
+Q("bc0","b-sales","Budgeted sales for the month are $88,000. 20% of sales are cash sales and the rest are credit sales. How much are budgeted credit sales?",["$70,400", "$17,600", "$88,000", "$44,000", "$77,440"],"Credit sales = total sales × credit %. Credit % = 100% − 20% cash = 80%. $88,000 × 80% = $70,400.","Ch 8 outline p.3");
+Q("bc1","b-sales","Budgeted sales for the month are $58,000. 25% of sales are cash sales and the rest are credit sales. How much are budgeted credit sales?",["$43,500", "$14,500", "$58,000", "$29,000", "$47,850"],"Credit sales = total sales × credit %. Credit % = 100% − 25% cash = 75%. $58,000 × 75% = $43,500.","Ch 8 outline p.3");
+Q("bc2","b-sales","Budgeted sales for the month are $79,000. 20% of sales are cash sales and the rest are credit sales. How much are budgeted credit sales?",["$63,200", "$15,800", "$79,000", "$39,500", "$69,520"],"Credit sales = total sales × credit %. Credit % = 100% − 20% cash = 80%. $79,000 × 80% = $63,200.","Ch 8 outline p.3");
+Q("bk0","b-collect","Blue Mesa Pottery's sales are $140,000 in May, $90,000 in June and $130,000 in July. 10% of sales are cash and 90% are on credit. Credit sales are collected 40% in the month of sale, 50% the month after, and 10% two months after. What are budgeted cash collections in July?",["$112,900", "$99,900", "$124,000", "$100,300", "$130,000"],"Cash collected in July = this month's cash sales + pieces of credit sales from this month and the two months before. (1) July cash sales: $130,000 × 10% = $13,000. (2) July credit: $130,000 × 90% × 40% = $46,800. (3) June credit: $90,000 × 90% × 50% = $40,500. (4) May credit: $140,000 × 90% × 10% = $12,600. Total = $112,900. Remember to take the credit % first, then the collection %.","Ch 8 outline p.4; Harmony and Kessler solutions");
+Q("ba0","b-collect","Blue Mesa Pottery's sales are $90,000 in June and $130,000 in July. 10% of sales are cash and 90% are on credit. Credit sales are collected 40% in the month of sale, 50% the month after, and 10% two months after. What is budgeted accounts receivable at the end of July?",["$78,300", "$70,200", "$87,000", "$66,600", "$118,800"],"Accounts receivable = credit sales NOT yet collected at the end of July. July: only 40% collected so far, so 60% is still owed: $130,000 × 90% × 60% = $70,200. June: 40% + 50% collected, so the last 10% is still owed: $90,000 × 90% × 10% = $8,100. Total A/R = $78,300. Cash sales are never in A/R.","Ch 8 outline p.6; Harmony solution #4");
+Q("bk1","b-collect","Coastal Kayaks's sales are $90,000 in January, $85,000 in February and $75,000 in March. 25% of sales are cash and 75% are on credit. Credit sales are collected 10% in the month of sale, 70% the month after, and 20% two months after. What are budgeted cash collections in March?",["$82,500", "$63,750", "$103,750", "$69,000", "$75,000"],"Cash collected in March = this month's cash sales + pieces of credit sales from this month and the two months before. (1) March cash sales: $75,000 × 25% = $18,750. (2) March credit: $75,000 × 75% × 10% = $5,625. (3) February credit: $85,000 × 75% × 70% = $44,625. (4) January credit: $90,000 × 75% × 20% = $13,500. Total = $82,500. Remember to take the credit % first, then the collection %.","Ch 8 outline p.4; Harmony and Kessler solutions");
+Q("ba1","b-collect","Coastal Kayaks's sales are $85,000 in February and $75,000 in March. 25% of sales are cash and 75% are on credit. Credit sales are collected 10% in the month of sale, 70% the month after, and 20% two months after. What is budgeted accounts receivable at the end of March?",["$63,375", "$50,625", "$84,500", "$52,125", "$108,000"],"Accounts receivable = credit sales NOT yet collected at the end of March. March: only 10% collected so far, so 90% is still owed: $75,000 × 75% × 90% = $50,625. February: 10% + 70% collected, so the last 20% is still owed: $85,000 × 75% × 20% = $12,750. Total A/R = $63,375. Cash sales are never in A/R.","Ch 8 outline p.6; Harmony solution #4");
+Q("bk2","b-collect","Maple Street Bakery's sales are $45,000 in January, $115,000 in February and $85,000 in March. 30% of sales are cash and 70% are on credit. Credit sales are collected 30% in the month of sale, 50% the month after, and 20% two months after. What are budgeted cash collections in March?",["$89,900", "$64,400", "$117,500", "$83,600", "$85,000"],"Cash collected in March = this month's cash sales + pieces of credit sales from this month and the two months before. (1) March cash sales: $85,000 × 30% = $25,500. (2) March credit: $85,000 × 70% × 30% = $17,850. (3) February credit: $115,000 × 70% × 50% = $40,250. (4) January credit: $45,000 × 70% × 20% = $6,300. Total = $89,900. Remember to take the credit % first, then the collection %.","Ch 8 outline p.4; Harmony and Kessler solutions");
+Q("ba2","b-collect","Maple Street Bakery's sales are $115,000 in February and $85,000 in March. 30% of sales are cash and 70% are on credit. Credit sales are collected 30% in the month of sale, 50% the month after, and 20% two months after. What is budgeted accounts receivable at the end of March?",["$57,750", "$41,650", "$82,500", "$45,850", "$98,000"],"Accounts receivable = credit sales NOT yet collected at the end of March. March: only 30% collected so far, so 70% is still owed: $85,000 × 70% × 70% = $41,650. February: 30% + 50% collected, so the last 20% is still owed: $115,000 × 70% × 20% = $16,100. Total A/R = $57,750. Cash sales are never in A/R.","Ch 8 outline p.6; Harmony solution #4");
+Q("bk3","b-collect","Northfield Lamps's sales are $135,000 in July, $80,000 in August and $100,000 in September. 20% of sales are cash and 80% are on credit. Credit sales are collected 50% in the month of sale, 40% the month after, and 10% two months after. What are budgeted cash collections in September?",["$96,400", "$76,400", "$115,500", "$85,600", "$100,000"],"Cash collected in September = this month's cash sales + pieces of credit sales from this month and the two months before. (1) September cash sales: $100,000 × 20% = $20,000. (2) September credit: $100,000 × 80% × 50% = $40,000. (3) August credit: $80,000 × 80% × 40% = $25,600. (4) July credit: $135,000 × 80% × 10% = $10,800. Total = $96,400. Remember to take the credit % first, then the collection %.","Ch 8 outline p.4; Harmony and Kessler solutions");
+Q("ba3","b-collect","Northfield Lamps's sales are $80,000 in August and $100,000 in September. 20% of sales are cash and 80% are on credit. Credit sales are collected 50% in the month of sale, 40% the month after, and 10% two months after. What is budgeted accounts receivable at the end of September?",["$46,400", "$40,000", "$58,000", "$38,400", "$72,000"],"Accounts receivable = credit sales NOT yet collected at the end of September. September: only 50% collected so far, so 50% is still owed: $100,000 × 80% × 50% = $40,000. August: 50% + 40% collected, so the last 10% is still owed: $80,000 × 80% × 10% = $6,400. Total A/R = $46,400. Cash sales are never in A/R.","Ch 8 outline p.6; Harmony solution #4");
+Q("bk4","b-collect","Copper Creek Outfitters's sales are $55,000 in August, $65,000 in September and $50,000 in October. 40% of sales are cash and 60% are on credit. Credit sales are collected 60% in the month of sale, 30% the month after, and 10% two months after. What are budgeted cash collections in October?",["$53,000", "$33,000", "$75,000", "$49,700", "$50,000"],"Cash collected in October = this month's cash sales + pieces of credit sales from this month and the two months before. (1) October cash sales: $50,000 × 40% = $20,000. (2) October credit: $50,000 × 60% × 60% = $18,000. (3) September credit: $65,000 × 60% × 30% = $11,700. (4) August credit: $55,000 × 60% × 10% = $3,300. Total = $53,000. Remember to take the credit % first, then the collection %.","Ch 8 outline p.4; Harmony and Kessler solutions");
+Q("ba4","b-collect","Copper Creek Outfitters's sales are $65,000 in September and $50,000 in October. 40% of sales are cash and 60% are on credit. Credit sales are collected 60% in the month of sale, 30% the month after, and 10% two months after. What is budgeted accounts receivable at the end of October?",["$15,900", "$12,000", "$26,500", "$12,900", "$27,600"],"Accounts receivable = credit sales NOT yet collected at the end of October. October: only 60% collected so far, so 40% is still owed: $50,000 × 60% × 40% = $12,000. September: 60% + 30% collected, so the last 10% is still owed: $65,000 × 60% × 10% = $3,900. Total A/R = $15,900. Cash sales are never in A/R.","Ch 8 outline p.6; Harmony solution #4");
+Q("bt1","b-collect","Trendy Totes' credit sales are collected 40% in the month of sale, 50% the next month, and 10% two months later. Which credit sales make up accounts receivable on June 30?",["60% of June's credit sales + 10% of May's credit sales", "40% of June's credit sales + 50% of May's credit sales", "100% of June's credit sales", "10% of April's credit sales + 50% of May's", "June's cash sales + June's credit sales"],"A/R = what has NOT been collected yet. By June 30: June has 40% collected, so 60% is owed. May has 40% + 50% = 90% collected, so 10% is owed. April is fully collected. That is $25,650 + $3,600 = $29,250 in the Trendy Totes example.","Ch 8 outline p.6");
+Q("bp0","b-prod","Maple Street Bakery wants ending finished goods inventory equal to 15% of next month's sales. It expects to sell 1,250 units in May and 500 units in June. Beginning inventory for May followed the same policy. How many units should be produced in May?",["1,137.50", "1,325", "1,062.50", "1,362.50", "387.50"],"Production = sales + desired ending inventory − beginning inventory. Ending inventory = 15% × 500 (next month) = 75. Beginning inventory = what was planned at the end of last month = 15% × 1,250 = 187.50. Production = 1,250 + 75 − 187.50 = 1,137.50 units.","Ch 8 outline p.7; Nichols Cycles solution");
+Q("bp1","b-prod","Northfield Lamps wants ending finished goods inventory equal to 20% of next month's sales. It expects to sell 450 units in July and 1,150 units in August. Beginning inventory for July followed the same policy. How many units should be produced in July?",["590", "680", "360", "310", "1,290"],"Production = sales + desired ending inventory − beginning inventory. Ending inventory = 20% × 1,150 (next month) = 230. Beginning inventory = what was planned at the end of last month = 20% × 450 = 90. Production = 450 + 230 − 90 = 590 units.","Ch 8 outline p.7; Nichols Cycles solution");
+Q("bp2","b-prod","Copper Creek Outfitters wants ending finished goods inventory equal to 25% of next month's sales. It expects to sell 1,250 units in June and 1,050 units in July. Beginning inventory for June followed the same policy. How many units should be produced in June?",["1,200", "1,512.50", "937.50", "1,300", "1,000"],"Production = sales + desired ending inventory − beginning inventory. Ending inventory = 25% × 1,050 (next month) = 262.50. Beginning inventory = what was planned at the end of last month = 25% × 1,250 = 312.50. Production = 1,250 + 262.50 − 312.50 = 1,200 units.","Ch 8 outline p.7; Nichols Cycles solution");
+Q("bp3","b-prod","Redwood Furniture wants ending finished goods inventory equal to 10% of next month's sales. It expects to sell 1,250 units in May and 500 units in June. Beginning inventory for May followed the same policy. How many units should be produced in May?",["1,175", "1,300", "1,125", "1,325", "425"],"Production = sales + desired ending inventory − beginning inventory. Ending inventory = 10% × 500 (next month) = 50. Beginning inventory = what was planned at the end of last month = 10% × 1,250 = 125. Production = 1,250 + 50 − 125 = 1,175 units.","Ch 8 outline p.7; Nichols Cycles solution");
+Q("bp4","b-prod","Lakeside Soap Co. wants ending finished goods inventory equal to 15% of next month's sales. It expects to sell 750 units in June and 850 units in July. Beginning inventory for June followed the same policy. How many units should be produced in June?",["765", "877.50", "637.50", "735", "865"],"Production = sales + desired ending inventory − beginning inventory. Ending inventory = 15% × 850 (next month) = 127.50. Beginning inventory = what was planned at the end of last month = 15% × 750 = 112.50. Production = 750 + 127.50 − 112.50 = 765 units.","Ch 8 outline p.7; Nichols Cycles solution");
+Q("bt2","b-prod","In the production budget, what is the correct formula?",["Budgeted unit sales + desired ending inventory − beginning inventory = units to produce", "Budgeted unit sales − desired ending inventory + beginning inventory = units to produce", "Beginning inventory + sales = units to produce", "Units to produce = desired ending inventory − sales", "Units to produce = sales × selling price"],"Think of the finished goods T-account: you need enough units to sell AND leave some for ending inventory. You already have the beginning inventory, so subtract it. What is left must be produced.","Ch 8 outline p.7");
+Q("bt3","b-prod","Trendy Totes' quarterly production budget uses which beginning inventory for the quarter total?",["April's beginning inventory (the start of the quarter)", "June's beginning inventory", "The sum of the three months' beginning inventories", "Zero, because beginning inventory is ignored for quarters", "July's beginning inventory"],"For a quarter: beginning inventory = the inventory at the START of the quarter (April 1: 150 bags), and ending inventory = the END of the quarter (June 30: 200 bags). Do not add up the months.","Ch 8 outline p.7");
+Q("bm0","b-dm","Pine Ridge Candles needs 1.5 pounds of material per unit at $4.00 per pound. It plans to produce 1,900 units in March and 1,750 units in April. It keeps ending materials inventory equal to 20% of next month's production needs, and March began with the same policy. What is the budgeted cost of materials PURCHASED in March?",["$11,220", "$11,400", "$13,500", "$2,805", "$11,580"],"DM purchases = needed for production + desired ending DM − beginning DM. Needed: 1,900 units × 1.5 lb = 2,850 lb. Ending: 20% × (1,750 × 1.5) = 525 lb. Beginning: 20% × 2,850 = 570 lb. Purchases = 2,850 + 525 − 570 = 2,805 lb × $4.00 = $11,220.","Ch 8 outline p.8-9; Breadmaster solution");
+Q("bm1","b-dm","Blue Mesa Pottery needs 4 pounds of material per unit at $1.50 per pound. It plans to produce 1,950 units in June and 900 units in July. It keeps ending materials inventory equal to 20% of next month's production needs, and June began with the same policy. What is the budgeted cost of materials PURCHASED in June?",["$10,440", "$11,700", "$12,780", "$6,960", "$12,960"],"DM purchases = needed for production + desired ending DM − beginning DM. Needed: 1,950 units × 4 lb = 7,800 lb. Ending: 20% × (900 × 4) = 720 lb. Beginning: 20% × 7,800 = 1,560 lb. Purchases = 7,800 + 720 − 1,560 = 6,960 lb × $1.50 = $10,440.","Ch 8 outline p.8-9; Breadmaster solution");
+Q("bm2","b-dm","Coastal Kayaks needs 4 pounds of material per unit at $4.00 per pound. It plans to produce 1,000 units in May and 1,900 units in June. It keeps ending materials inventory equal to 20% of next month's production needs, and May began with the same policy. What is the budgeted cost of materials PURCHASED in May?",["$18,880", "$16,000", "$22,080", "$4,720", "$13,120"],"DM purchases = needed for production + desired ending DM − beginning DM. Needed: 1,000 units × 4 lb = 4,000 lb. Ending: 20% × (1,900 × 4) = 1,520 lb. Beginning: 20% × 4,000 = 800 lb. Purchases = 4,000 + 1,520 − 800 = 4,720 lb × $4.00 = $18,880.","Ch 8 outline p.8-9; Breadmaster solution");
+Q("bm3","b-dm","Maple Street Bakery needs 1.5 pounds of material per unit at $1.50 per pound. It plans to produce 700 units in September and 700 units in October. It keeps ending materials inventory equal to 20% of next month's production needs, and September began with the same policy. What is the budgeted cost of materials PURCHASED in September?",["$1,575", "$1,890", "$1,050", "$1,733", "$1,418"],"DM purchases = needed for production + desired ending DM − beginning DM. Needed: 700 units × 1.5 lb = 1,050 lb. Ending: 20% × (700 × 1.5) = 210 lb. Beginning: 20% × 1,050 = 210 lb. Purchases = 1,050 + 210 − 210 = 1,050 lb × $1.50 = $1,575.","Ch 8 outline p.8-9; Breadmaster solution");
+Q("bm4","b-dm","Northfield Lamps needs 1.5 pounds of material per unit at $6.00 per pound. It plans to produce 1,750 units in July and 900 units in August. It keeps ending materials inventory equal to 10% of next month's production needs, and July began with the same policy. What is the budgeted cost of materials PURCHASED in July?",["$14,985", "$15,750", "$16,560", "$2,497.50", "$16,515"],"DM purchases = needed for production + desired ending DM − beginning DM. Needed: 1,750 units × 1.5 lb = 2,625 lb. Ending: 10% × (900 × 1.5) = 135 lb. Beginning: 10% × 2,625 = 262.50 lb. Purchases = 2,625 + 135 − 262.50 = 2,497.50 lb × $6.00 = $14,985.","Ch 8 outline p.8-9; Breadmaster solution");
+Q("bt4","b-dm","The direct materials budget is driven by which earlier budget?",["The production budget", "The sales budget directly", "The cash budget", "The selling and administrative budget", "The budgeted balance sheet"],"Sales drives production, and PRODUCTION drives direct materials, direct labor and overhead. Materials needed = units to PRODUCE × materials per unit.","Transcript: direct materials budget");
+Q("bt5","b-dm","Trendy Totes needs July's production to finish its June direct materials budget. Why?",["June's desired ending materials = 5% of July's production needs", "July's sales are collected in June", "July's production is paid for in June", "June's beginning inventory depends on July", "It doesn't; July is never needed"],"Ending DM inventory is a % of NEXT month's production needs. To budget June's ending canvas, you need July's production (1,980 bags × 2 yd × 5% = 198 yards). And July's production needs August sales (for July's ending finished goods).","Ch 8 outline p.8-9");
+Q("bd0","b-pay","Northfield Lamps buys materials of $41,000 in March, $65,000 in April and $53,000 in May. It pays 60% in the month of purchase, 30% the next month and 10% two months later. What are budgeted cash payments for purchases in May?",["$55,400", "$51,300", "$53,000", "$50,600", "$60,940"],"Paid in May = 60% of May + 30% of April + 10% of March: $31,800 + $19,500 + $4,100 = $55,400.","Ch 8 outline p.10; Mighty Company solution #1");
+Q("bq0","b-pay","Northfield Lamps buys materials of $65,000 in April and $53,000 in May. It pays 60% in the month of purchase, 30% the next month and 10% two months later. What is budgeted accounts payable at the end of May?",["$27,700", "$21,200", "$22,400", "$31,800", "$47,200"],"A/P = purchases NOT yet paid. May: 40% still owed = $21,200. April: the last 10% still owed = $6,500. Total = $27,700.","Ch 8 outline p.12; Mighty Company solution #2");
+Q("bd1","b-pay","Copper Creek Outfitters buys materials of $75,000 in January, $22,000 in February and $28,000 in March. It pays 75% in the month of purchase, 20% the next month and 5% two months later. What are budgeted cash payments for purchases in March?",["$29,150", "$25,400", "$28,000", "$37,100", "$32,065"],"Paid in March = 75% of March + 20% of February + 5% of January: $21,000 + $4,400 + $3,750 = $29,150.","Ch 8 outline p.10; Mighty Company solution #1");
+Q("bq1","b-pay","Copper Creek Outfitters buys materials of $22,000 in February and $28,000 in March. It pays 75% in the month of purchase, 20% the next month and 5% two months later. What is budgeted accounts payable at the end of March?",["$8,100", "$7,000", "$6,700", "$21,000", "$12,500"],"A/P = purchases NOT yet paid. March: 25% still owed = $7,000. February: the last 5% still owed = $1,100. Total = $8,100.","Ch 8 outline p.12; Mighty Company solution #2");
+Q("bd2","b-pay","Redwood Furniture buys materials of $27,000 in September, $67,000 in October and $60,000 in November. It pays 50% in the month of purchase, 40% the next month and 10% two months later. What are budgeted cash payments for purchases in November?",["$59,500", "$56,800", "$60,000", "$47,500", "$65,450"],"Paid in November = 50% of November + 40% of October + 10% of September: $30,000 + $26,800 + $2,700 = $59,500.","Ch 8 outline p.10; Mighty Company solution #1");
+Q("bq2","b-pay","Redwood Furniture buys materials of $67,000 in October and $60,000 in November. It pays 50% in the month of purchase, 40% the next month and 10% two months later. What is budgeted accounts payable at the end of November?",["$36,700", "$30,000", "$30,700", "$63,500", "$40,370"],"A/P = purchases NOT yet paid. November: 50% still owed = $30,000. October: the last 10% still owed = $6,700. Total = $36,700.","Ch 8 outline p.12; Mighty Company solution #2");
+Q("bd3","b-pay","Lakeside Soap Co. buys materials of $21,000 in May, $51,000 in June and $71,000 in July. It pays 70% in the month of purchase, 25% the next month and 5% two months later. What are budgeted cash payments for purchases in July?",["$63,500", "$62,450", "$71,000", "$57,500", "$69,850"],"Paid in July = 70% of July + 25% of June + 5% of May: $49,700 + $12,750 + $1,050 = $63,500.","Ch 8 outline p.10; Mighty Company solution #1");
+Q("bq3","b-pay","Lakeside Soap Co. buys materials of $51,000 in June and $71,000 in July. It pays 70% in the month of purchase, 25% the next month and 5% two months later. What is budgeted accounts payable at the end of July?",["$23,850", "$21,300", "$20,300", "$49,700", "$36,600"],"A/P = purchases NOT yet paid. July: 30% still owed = $21,300. June: the last 5% still owed = $2,550. Total = $23,850.","Ch 8 outline p.12; Mighty Company solution #2");
+Q("bl0","b-dl","A company expects to sell 470 units and produce 500 units in April. Each unit takes 0.5 direct labor hours at $18 per hour. What is budgeted direct labor cost for April?",["$4,500", "$4,230", "$9,000", "$250", "$4,653"],"Direct labor is based on units PRODUCED, not sold. 500 units × 0.5 hr = 250 hours × $18 = $4,500.","Ch 8 outline p.13; Whistler solution");
+Q("bl1","b-dl","A company expects to sell 740 units and produce 790 units in June. Each unit takes 0.5 direct labor hours at $22 per hour. What is budgeted direct labor cost for June?",["$8,690", "$8,140", "$17,380", "$395", "$8,954"],"Direct labor is based on units PRODUCED, not sold. 790 units × 0.5 hr = 395 hours × $22 = $8,690.","Ch 8 outline p.13; Whistler solution");
+Q("bl2","b-dl","A company expects to sell 670 units and produce 740 units in November. Each unit takes 1.5 direct labor hours at $19 per hour. What is budgeted direct labor cost for November?",["$21,090", "$19,095", "$14,060", "$1,110", "$21,004.50"],"Direct labor is based on units PRODUCED, not sold. 740 units × 1.5 hr = 1,110 hours × $19 = $21,090.","Ch 8 outline p.13; Whistler solution");
+Q("bo0","b-dl","Variable overhead is $5.5 per unit produced and fixed overhead is $13,000 per month, including $2,000 of depreciation. The company plans to produce 3,250 units. What are the budgeted CASH payments for overhead?",["$28,875", "$30,875", "$17,875", "$15,875", "$11,000"],"Total overhead = 3,250 × $5.5 + $13,000 = $30,875. Depreciation is a NONCASH expense: no cash is paid for it. Cash payments = $30,875 − $2,000 = $28,875.","Ch 8 outline p.14");
+Q("bo1","b-dl","Variable overhead is $5.5 per unit produced and fixed overhead is $16,000 per month, including $1,000 of depreciation. The company plans to produce 1,850 units. What are the budgeted CASH payments for overhead?",["$25,175", "$26,175", "$10,175", "$9,175", "$15,000"],"Total overhead = 1,850 × $5.5 + $16,000 = $26,175. Depreciation is a NONCASH expense: no cash is paid for it. Cash payments = $26,175 − $1,000 = $25,175.","Ch 8 outline p.14");
+Q("bo2","b-dl","Variable overhead is $5.5 per unit produced and fixed overhead is $19,000 per month, including $1,000 of depreciation. The company plans to produce 1,150 units. What are the budgeted CASH payments for overhead?",["$24,325", "$25,325", "$6,325", "$5,325", "$18,000"],"Total overhead = 1,150 × $5.5 + $19,000 = $25,325. Depreciation is a NONCASH expense: no cash is paid for it. Cash payments = $25,325 − $1,000 = $24,325.","Ch 8 outline p.14");
+Q("bt6","b-dl","Direct labor is usually paid",["in the month it is incurred, so cash payments equal the direct labor budget", "two months after it is incurred", "only at year-end", "before employees start work", "the same way as credit sales"],"Unless told otherwise, direct labor is paid in the month incurred, so cash paid for labor each month = budgeted direct labor cost that month. Overhead is also assumed paid as incurred, except depreciation.","Ch 8 outline p.13");
+Q("bu0","b-cogs","Each unit needs 1.5 yards of fabric at $3.00 per yard and 0.25 hour of direct labor at $20.00 per hour. Overhead is applied at 120% of direct labor cost. The company expects to sell 5,500 units and end with 200 units in finished goods. What is budgeted cost of goods sold?",["$85,250", "$52,250", "$88,350", "$58,850", "$3,100"],"Unit cost: DM 1.5 × $3.00 = $4.50; DL 0.25 × $20.00 = $5.00; overhead 120% × $5.00 = $6.00. Total = $15.50 per unit. COGS = units SOLD × unit cost = 5,500 × $15.50 = $85,250. (Ending inventory would be 200 × $15.50 = $3,100 on the balance sheet.)","Ch 8 outline p.2, p.15");
+Q("bu1","b-cogs","Each unit needs 2 yards of fabric at $3.00 per yard and 1 hour of direct labor at $10.00 per hour. Overhead is applied at 100% of direct labor cost. The company expects to sell 5,000 units and end with 100 units in finished goods. What is budgeted cost of goods sold?",["$130,000", "$80,000", "$132,600", "$85,000", "$2,600"],"Unit cost: DM 2 × $3.00 = $6.00; DL 1 × $10.00 = $10.00; overhead 100% × $10.00 = $10.00. Total = $26.00 per unit. COGS = units SOLD × unit cost = 5,000 × $26.00 = $130,000. (Ending inventory would be 100 × $26.00 = $2,600 on the balance sheet.)","Ch 8 outline p.2, p.15");
+Q("bu2","b-cogs","Each unit needs 2 yards of fabric at $2.00 per yard and 1 hour of direct labor at $12.00 per hour. Overhead is applied at 80% of direct labor cost. The company expects to sell 4,200 units and end with 400 units in finished goods. What is budgeted cost of goods sold?",["$107,520", "$67,200", "$117,760", "$70,560", "$10,240"],"Unit cost: DM 2 × $2.00 = $4.00; DL 1 × $12.00 = $12.00; overhead 80% × $12.00 = $9.60. Total = $25.60 per unit. COGS = units SOLD × unit cost = 4,200 × $25.60 = $107,520. (Ending inventory would be 400 × $25.60 = $10,240 on the balance sheet.)","Ch 8 outline p.2, p.15");
+Q("bt7","b-cogs","Trendy Totes' overhead is applied at 80% of direct labor cost. If direct labor is $5 per bag, overhead per bag is",["$4.00", "$0.80", "$5.80", "$8.00", "$6.25"],"80% × $5.00 = $4.00 per bag. Unit cost = $6 DM + $5 DL + $4 overhead = $15. COGS for 5,000 bags = $75,000; 200 bags in ending inventory = $3,000.","Ch 8 outline p.2");
+Q("bt8","b-sa","Which two selling and administrative expenses are NOT included in the cash disbursements schedule?",["Bad debt expense and depreciation expense", "Sales commissions and shipping", "Advertising and administrative salaries", "Sales commissions and advertising", "Rent and utilities"],"Bad debt expense and depreciation are NONCASH expenses. They appear in the S&A budget (and lower operating income) but no cash is paid for them. Trendy Totes: S&A expense $27,125 for the quarter, but cash paid only $20,000.","Ch 8 outline p.16-17");
+Q("bx0","b-sa","Next month a company expects to sell 1,000 units with $44,000 of credit sales. S&A: commissions $2 per unit, shipping $0.25 per unit, bad debt 4% of credit sales, depreciation $1,000, advertising $500, salaries $4,000. All cash expenses are paid in the month incurred. What are budgeted CASH payments for S&A?",["$6,750", "$9,510", "$8,510", "$7,750", "$6,250"],"Cash S&A = commissions $2,000 + shipping $250 + advertising $500 + salaries $4,000 = $6,750. Leave out bad debt ($1,760) and depreciation ($1,000) because they are noncash. Total S&A EXPENSE would be $9,510.","Ch 8 outline p.16-17");
+Q("bx1","b-sa","Next month a company expects to sell 1,800 units with $29,000 of credit sales. S&A: commissions $3 per unit, shipping $0.50 per unit, bad debt 4% of credit sales, depreciation $1,000, advertising $1,500, salaries $2,000. All cash expenses are paid in the month incurred. What are budgeted CASH payments for S&A?",["$9,800", "$11,960", "$10,960", "$10,800", "$8,300"],"Cash S&A = commissions $5,400 + shipping $900 + advertising $1,500 + salaries $2,000 = $9,800. Leave out bad debt ($1,160) and depreciation ($1,000) because they are noncash. Total S&A EXPENSE would be $11,960.","Ch 8 outline p.16-17");
+Q("bx2","b-sa","Next month a company expects to sell 2,400 units with $35,000 of credit sales. S&A: commissions $2 per unit, shipping $0.25 per unit, bad debt 2% of credit sales, depreciation $500, advertising $1,000, salaries $3,000. All cash expenses are paid in the month incurred. What are budgeted CASH payments for S&A?",["$9,400", "$10,600", "$10,100", "$9,900", "$8,400"],"Cash S&A = commissions $4,800 + shipping $600 + advertising $1,000 + salaries $3,000 = $9,400. Leave out bad debt ($700) and depreciation ($500) because they are noncash. Total S&A EXPENSE would be $10,600.","Ch 8 outline p.16-17");
+Q("bb0","b-cash","A company starts the month with $13,000 cash and expects to collect $111,000. Cash payments for inventory are $94,000. S&A expenses are $23,000, which includes $5,000 of depreciation. It wants a minimum cash balance of $5,000. What is the cash excess (or deficiency) after keeping the minimum balance?",["$7,000", "$12,000", "$2,000", "$20,000", "$7,700"],"Cash available = $13,000 + $111,000 = $124,000. Payments = $94,000 + $18,000 (S&A minus noncash depreciation) = $112,000. Excess over payments = $12,000. Minus minimum balance $5,000 = $7,000 excess, so no borrowing is needed.","Ch 8 outline p.18-20; Garden Depot solution");
+Q("bb1","b-cash","A company starts the quarter with $5,000 cash and expects to collect $43,000. Cash payments for inventory are $87,000. S&A expenses are $16,000, which includes $3,000 of depreciation. It wants a minimum cash balance of $20,000 and borrows in increments of $1,000. How much must it borrow?",["$72,000", "$75,000", "$52,000", "$79,200", "$64,800"],"Cash available = $5,000 + $43,000 = $48,000. Payments = $87,000 + $13,000 (S&A minus noncash depreciation) = $100,000. After payments: -$52,000. Subtract the $20,000 minimum → deficiency of $72,000. Rounded up to the next $1,000 → borrow $72,000.","Ch 8 outline p.18-20; Garden Depot solution");
+Q("bb2","b-cash","A company starts the quarter with $16,000 cash and expects to collect $47,000. Cash payments for inventory are $48,000. S&A expenses are $14,000, which includes $5,000 of depreciation. It wants a minimum cash balance of $20,000 and borrows in increments of $1,000. How much must it borrow?",["$14,000", "$19,000", "$16,000", "$17,000", "$15,400"],"Cash available = $16,000 + $47,000 = $63,000. Payments = $48,000 + $9,000 (S&A minus noncash depreciation) = $57,000. After payments: $6,000. Subtract the $20,000 minimum → deficiency of $14,000. Rounded up to the next $1,000 → borrow $14,000.","Ch 8 outline p.18-20; Garden Depot solution");
+Q("bb3","b-cash","A company starts the quarter with $2,000 cash and expects to collect $72,000. Cash payments for inventory are $79,000. S&A expenses are $16,000, which includes $5,000 of depreciation. It wants a minimum cash balance of $5,000 and borrows in increments of $1,000. How much must it borrow?",["$21,000", "$26,000", "$16,000", "$23,100", "$18,900"],"Cash available = $2,000 + $72,000 = $74,000. Payments = $79,000 + $11,000 (S&A minus noncash depreciation) = $90,000. After payments: -$16,000. Subtract the $5,000 minimum → deficiency of $21,000. Rounded up to the next $1,000 → borrow $21,000.","Ch 8 outline p.18-20; Garden Depot solution");
+Q("bb4","b-cash","A company starts the quarter with $16,000 cash and expects to collect $90,000. Cash payments for inventory are $99,000. S&A expenses are $25,000, which includes $3,000 of depreciation. It wants a minimum cash balance of $15,000 and borrows in increments of $1,000. How much must it borrow?",["$30,000", "$33,000", "$15,000", "$27,000", "$36,000"],"Cash available = $16,000 + $90,000 = $106,000. Payments = $99,000 + $22,000 (S&A minus noncash depreciation) = $121,000. After payments: -$15,000. Subtract the $15,000 minimum → deficiency of $30,000. Rounded up to the next $1,000 → borrow $30,000.","Ch 8 outline p.18-20; Garden Depot solution");
+Q("bi0","b-cash","A company borrows $4,000 at the beginning of a month at a 12% annual rate and repays it with interest at the end of the month, 2 months later in total (2 months of interest). How much interest does it pay?",["$80", "$480", "$40", "$160", "$88"],"Interest = principal × annual rate × (months ÷ 12) = $4,000 × 12% × 2/12 = $80. Trendy Totes: $4,000 × 12% × 2/12 = $80 (borrowed May 1, repaid June 30).","Ch 8 outline p.19-20");
+Q("bi1","b-cash","A company borrows $10,000 at the beginning of a month at a 9% annual rate and repays it with interest at the end of the month, 3 months later in total (3 months of interest). How much interest does it pay?",["$225", "$900", "$75", "$150", "$450"],"Interest = principal × annual rate × (months ÷ 12) = $10,000 × 9% × 3/12 = $225. Trendy Totes: $4,000 × 12% × 2/12 = $80 (borrowed May 1, repaid June 30).","Ch 8 outline p.19-20");
+Q("bi2","b-cash","A company borrows $6,000 at the beginning of a month at a 10% annual rate and repays it with interest at the end of the month, 4 months later in total (4 months of interest). How much interest does it pay?",["$200", "$600", "$50", "$150", "$400"],"Interest = principal × annual rate × (months ÷ 12) = $6,000 × 10% × 4/12 = $200. Trendy Totes: $4,000 × 12% × 2/12 = $80 (borrowed May 1, repaid June 30).","Ch 8 outline p.19-20");
+Q("bi3","b-cash","A company borrows $15,000 at the beginning of a month at a 8% annual rate and repays it with interest at the end of the month, 6 months later in total (6 months of interest). How much interest does it pay?",["$600", "$1,200", "$100", "$500", "$660"],"Interest = principal × annual rate × (months ÷ 12) = $15,000 × 8% × 6/12 = $600. Trendy Totes: $4,000 × 12% × 2/12 = $80 (borrowed May 1, repaid June 30).","Ch 8 outline p.19-20");
+Q("bt9","b-cash","What are the four sections of the cash budget?",["Cash collections (available), cash disbursements, cash excess or deficiency, financing", "Sales, production, purchases, collections", "Operating, investing, financing, noncash", "Assets, liabilities, equity, income", "Revenue, COGS, gross margin, net income"],"Cash available (beginning cash + collections) − disbursements − minimum cash balance = excess or (deficiency). Then the financing section shows borrowing, repayments and interest.","Ch 8 outline p.18");
+Q("bt10","b-cash","In Trendy Totes' cash budget, borrowings happen at the ______ of the month and repayments at the ______.",["beginning; end", "end; beginning", "beginning; beginning", "end; end", "middle; end"],"Borrow at the beginning (so the cash is there to pay bills); repay at the end. So money borrowed May 1 and repaid June 30 is outstanding 2 months → 2 months of interest.","Ch 8 outline p.19");
+Q("bt11","b-cash","The ending cash balance for one month becomes",["the beginning cash balance for the next month", "the minimum cash balance", "the borrowing amount", "part of cash collections", "net income"],"April ended with $12,968.50, which is May's beginning cash. Always carry ending cash forward.","Ch 8 outline p.20");
+Q("bt12","b-stmt","Trendy Totes budgets sales of $125,000, COGS of $75,000, S&A of $27,125 and interest of $80. What is budgeted net income?",["$22,795", "$22,875", "$50,000", "$25,000", "$22,715"],"Gross margin = 125,000 − 75,000 = 50,000. Operating income = 50,000 − 27,125 = 22,875. Net income = 22,875 − 80 interest = $22,795. The budgeted income statement is also called the pro forma income statement.","Ch 8 outline p.21");
+Q("bt13","b-stmt","\"Pro forma\" means",["forward-looking or projected", "actual and audited", "prepared for tax purposes", "for the prior year", "prepared by outside auditors"],"A pro forma income statement is a projected (budgeted) income statement.","Transcript: budgeted income statement");
+Q("bt14","b-stmt","Retained earnings at March 31 is $32,839.90 and budgeted net income for the quarter is $22,795 (no dividends). Budgeted retained earnings on June 30 is",["$55,634.90", "$32,839.90", "$22,795.00", "$10,044.90", "$61,213.70"],"Ending RE = beginning RE + net income − dividends = 32,839.90 + 22,795 = $55,634.90.","Ch 8 outline p.22");
+Q("bt15","b-stmt","Equipment costing $15,000 is bought May 1 with a 30-month life and no salvage value. What is its net book value on the June 30 budgeted balance sheet?",["$14,000", "$15,000", "$14,500", "$13,500", "$500"],"Depreciation = 15,000 ÷ 30 = $500 per month. May and June = $1,000. Net = 15,000 − 1,000 = $14,000.","Ch 8 outline p.19, 22");
+Q("bt16","b-stmt","Trendy Totes plans 198 yards of canvas left at $3 per yard and 200 finished bags at $15 each on June 30. What inventory amounts go on the budgeted balance sheet?",["Raw materials $594; finished goods $3,000", "Raw materials $3,000; finished goods $594", "Raw materials $198; finished goods $200", "Raw materials $594; finished goods $5,000", "Only finished goods of $3,594"],"Raw materials = 198 × $3 = $594. Finished goods = 200 × $15 standard cost = $3,000. No work in process was expected.","Ch 8 outline p.22");
+Q("bt17","b-stmt","Trendy Totes borrowed $4,000 in May and repaid it in June. What note payable appears on the June 30 budgeted balance sheet?",["None, because it was repaid by June 30", "$4,000", "$4,080", "$80", "$2,000"],"A note payable existed at May 31, but it was repaid at the end of June, so the June 30 balance sheet shows no note payable. Its only liability is accounts payable of $5,578.80.","Transcript: budgeted balance sheet");
+Q("br0","b-merch","A retailer expects sales of $350,000 in April and $350,000 in May. Prices give a 25% gross profit. It keeps ending inventory equal to 15% of next month's cost of goods sold, and April began with the same policy. What are budgeted purchases for April?",["$262,500", "$350,000", "$301,875", "$87,500", "$288,750"],"Inventory is carried at COST, so convert sales to COGS first: COGS = sales × (100% − 25%) = sales × 75%. April COGS = $262,500. Ending inventory = 15% × $262,500 = $39,375. Beginning = 15% × $262,500 = $39,375. Purchases = $262,500 + $39,375 − $39,375 = $262,500.","Ch 8 outline p.23-24");
+Q("br1","b-merch","A retailer expects sales of $310,000 in September and $200,000 in October. Prices give a 45% gross profit. It keeps ending inventory equal to 15% of next month's cost of goods sold, and September began with the same policy. What are budgeted purchases for September?",["$161,425", "$293,500", "$170,500", "$187,000", "$132,075"],"Inventory is carried at COST, so convert sales to COGS first: COGS = sales × (100% − 45%) = sales × 55%. September COGS = $170,500. Ending inventory = 15% × $110,000 = $16,500. Beginning = 15% × $170,500 = $25,575. Purchases = $170,500 + $16,500 − $25,575 = $161,425.","Ch 8 outline p.23-24");
+Q("br2","b-merch","A retailer expects sales of $170,000 in September and $290,000 in October. Prices give a 45% gross profit. It keeps ending inventory equal to 10% of next month's cost of goods sold, and September began with the same policy. What are budgeted purchases for September?",["$100,100", "$182,000", "$93,500", "$109,450", "$81,900"],"Inventory is carried at COST, so convert sales to COGS first: COGS = sales × (100% − 45%) = sales × 55%. September COGS = $93,500. Ending inventory = 10% × $159,500 = $15,950. Beginning = 10% × $93,500 = $9,350. Purchases = $93,500 + $15,950 − $9,350 = $100,100.","Ch 8 outline p.23-24");
+Q("br3","b-merch","A retailer expects sales of $340,000 in August and $210,000 in September. Prices give a 25% gross profit. It keeps ending inventory equal to 20% of next month's cost of goods sold, and August began with the same policy. What are budgeted purchases for August?",["$235,500", "$314,000", "$255,000", "$286,500", "$78,500"],"Inventory is carried at COST, so convert sales to COGS first: COGS = sales × (100% − 25%) = sales × 75%. August COGS = $255,000. Ending inventory = 20% × $157,500 = $31,500. Beginning = 20% × $255,000 = $51,000. Purchases = $255,000 + $31,500 − $51,000 = $235,500.","Ch 8 outline p.23-24");
+Q("bt18","b-merch","College Logos earns a 30% gross profit and wants inventory of $435,000 plus 15% of next month's COGS. October sales are $2,230,000 and November sales are $2,376,000. What are October's purchases?",["$1,576,330", "$1,561,000", "$1,612,630", "$2,245,330", "$669,150"],"COGS Oct = 2,230,000 × 70% = 1,561,000. Ending inv = 435,000 + 15% × (2,376,000 × 70%) = 684,480. Beginning inv = 435,000 + 15% × 1,561,000 = 669,150. Purchases = 1,561,000 + 684,480 − 669,150 = $1,576,330.","College Logos solution #9");
+Q("bt19","b-merch","For a merchandiser, which formula gives budgeted purchases?",["COGS + desired ending inventory − beginning inventory", "Sales + desired ending inventory − beginning inventory", "COGS − ending inventory + beginning inventory", "Sales × gross profit %", "Beginning inventory + sales"],"Same idea as the production budget, but in dollars of COST. Use COGS (not sales), because inventory is carried at cost.","Ch 8 outline p.23");
+Q("f001","f-basics","A variance is",["the difference between actual results and budgeted amounts", "the budget for next year", "a type of fixed cost", "the standard price of materials", "the difference between sales and COGS"],"Variances compare actual results to the budget. They are measured in dollars and labeled favorable (F) or unfavorable (U).","Flexible budgets outline p.1");
+Q("f002","f-basics","A favorable variance is one that",["makes operating income higher than budgeted", "makes operating income lower than budgeted", "is always on a revenue line", "is larger than $10,000", "must be investigated"],"Favorable = income higher than planned: actual revenue > budget, or actual cost < budget. Unfavorable = income lower: actual revenue < budget, or actual cost > budget.","Flexible budgets outline p.1");
+Q("f003","f-basics","Actual advertising expense was $1,000 and budgeted advertising was $1,500. The variance is",["$500 favorable", "$500 unfavorable", "$1,500 favorable", "$2,500 unfavorable", "zero"],"Spending LESS than budgeted on a cost raises income, so it is favorable: $1,500 − $1,000 = $500 F.","Flexible budgets outline p.3");
+Q("f004","f-basics","Investigating only large variances, or those above a set dollar or percent threshold, is called",["management by exception", "participative budgeting", "zero-based budgeting", "goal congruence", "responsibility accounting"],"Management by exception: managers do not chase every small difference; they look only at the big ones.","Flexible budgets outline p.1");
+Q("f005","f-basics","What is the main problem with the master budget variance?",["It compares actual results at one volume with a budget at a different volume", "It ignores revenues", "It only works for fixed costs", "It is always favorable", "It cannot be calculated for a quarter"],"Trendy Totes sold 6,000 bags but budgeted 5,000. Comparing the two is apples to oranges, because costs naturally rise when more bags are made. The flexible budget fixes this.","Flexible budgets outline p.3");
+Q("f006","f-basics","A flexible budget is",["an estimate of what revenues and costs SHOULD have been, given the actual level of activity", "the budget prepared before the period begins", "a budget that never changes", "a budget for fixed costs only", "the actual results for the period"],"The flexible budget uses the same per-unit prices and costs and the same fixed costs as the master budget, but the ACTUAL volume. It is identical to the master budget except for the activity level.","Flexible budgets outline p.3");
+Q("f007","f-basics","When the flexible budget is prepared at a higher activity level than the master budget, fixed costs in the flexible budget",["stay the same as in the master budget", "increase in proportion to activity", "decrease", "are removed", "double"],"Fixed costs (depreciation $1,500, advertising $1,500, salaries $6,000 for Trendy Totes) do not change with volume, so they are the same in both budgets. Only variable items change.","Flexible budgets outline p.4");
+Q("f008","f-basics","The ACTIVITY (volume) variance compares",["the flexible budget with the master budget", "actual results with the flexible budget", "actual results with the master budget", "standard price with actual price", "this year with last year"],"Activity variance = flexible budget vs. master budget. The only difference is volume, so it shows how much of the master budget variance is caused by selling a different number of units.","Flexible budgets outline p.5");
+Q("f009","f-basics","The REVENUE/SPENDING (flexible budget) variance compares",["actual results with the flexible budget", "the flexible budget with the master budget", "actual results with the master budget", "the master budget with last year", "the standard cost with the budgeted cost"],"Revenue/spending variance = actual vs. flexible budget. Both are at the SAME volume, so this variance shows differences caused by prices and costs, not volume.","Flexible budgets outline p.5");
+Q("f010","f-basics","Master budget variance =",["revenue/spending variance + activity variance", "activity variance − spending variance", "price variance + quantity variance only", "flexible budget − actual", "actual results × activity"],"Trendy Totes operating income: $18,700 U spending + $7,500 F activity = $11,200 U master budget variance.","Flexible budgets outline p.6");
+Q("f011","f-basics","For the activity variance, the flexible budget expects higher sales revenue than the master budget. The revenue activity variance is",["favorable, because the revised plan expects more revenue than the original plan", "unfavorable, because actual sales are not involved", "always zero", "unfavorable, because costs also rise", "favorable only if costs fall"],"Treat the master budget as the original plan and the flexible budget as the revised plan. More revenue than originally planned = favorable. More cost than originally planned = unfavorable.","Flexible budgets outline p.5");
+Q("f012","f-basics","Trendy Totes sold 6,000 bags instead of 5,000. Its direct materials activity variance is $6,000 U. Why is it unfavorable even though selling more is good?",["Making more bags means the flexible budget expects higher materials cost than the master budget", "Canvas prices rose", "Workers wasted canvas", "The flexible budget used the actual price", "Fixed costs went up"],"Activity variances on COST lines are unfavorable when volume rises: 6,000 × $6 = $36,000 vs. 5,000 × $6 = $30,000. That is fine; it is offset by the $25,000 F revenue activity variance.","Flexible budgets outline p.6");
+Q("fx0","f-flex","A company budgets a $30 selling price, $15 variable cost per unit and $31,000 of fixed costs. The master budget was for 7,000 units, but 6,100 units were actually sold. What is operating income in the FLEXIBLE budget?",["$60,500", "$74,000", "$91,500", "$47,000", "$29,500"],"Flexible budget = budgeted prices and costs at the ACTUAL volume. Contribution margin per unit = $30 − $15 = $15. 6,100 × $15 = $91,500. Fixed costs stay $31,000. Operating income = $60,500.","Flexible budgets outline p.4");
+Q("fa0","f-flex","A company budgets a $30 selling price, $15 variable cost per unit and $31,000 of fixed costs. The master budget was for 7,000 units, but 6,100 units were actually sold. What is the ACTIVITY variance for operating income?",["$13,500 U", "$13,500 F", "$27,000 U", "$27,000 F", "$31,000 U"],"Activity variance = flexible budget − master budget (only volume differs). Change in units = 6,100 − 7,000 = -900. × $15 contribution margin per unit = $13,500. Fewer units than planned → lower expected income → unfavorable. Fixed costs cancel out.","Flexible budgets outline p.5-6");
+Q("fx1","f-flex","A company budgets a $20 selling price, $15 variable cost per unit and $22,000 of fixed costs. The master budget was for 4,000 units, but 3,200 units were actually sold. What is operating income in the FLEXIBLE budget?",["-$6,000", "$16,000", "-$6,600", "-$5,400", "-$7,200"],"Flexible budget = budgeted prices and costs at the ACTUAL volume. Contribution margin per unit = $20 − $15 = $5. 3,200 × $5 = $16,000. Fixed costs stay $22,000. Operating income = -$6,000.","Flexible budgets outline p.4");
+Q("fa1","f-flex","A company budgets a $20 selling price, $15 variable cost per unit and $22,000 of fixed costs. The master budget was for 4,000 units, but 3,200 units were actually sold. What is the ACTIVITY variance for operating income?",["$4,000 U", "$4,000 F", "$16,000 U", "$16,000 F", "$12,000 U"],"Activity variance = flexible budget − master budget (only volume differs). Change in units = 3,200 − 4,000 = -800. × $5 contribution margin per unit = $4,000. Fewer units than planned → lower expected income → unfavorable. Fixed costs cancel out.","Flexible budgets outline p.5-6");
+Q("fx2","f-flex","A company budgets a $40 selling price, $12 variable cost per unit and $37,000 of fixed costs. The master budget was for 4,000 units, but 4,700 units were actually sold. What is operating income in the FLEXIBLE budget?",["$94,600", "$75,000", "$131,600", "$103,000", "$57,600"],"Flexible budget = budgeted prices and costs at the ACTUAL volume. Contribution margin per unit = $40 − $12 = $28. 4,700 × $28 = $131,600. Fixed costs stay $37,000. Operating income = $94,600.","Flexible budgets outline p.4");
+Q("fa2","f-flex","A company budgets a $40 selling price, $12 variable cost per unit and $37,000 of fixed costs. The master budget was for 4,000 units, but 4,700 units were actually sold. What is the ACTIVITY variance for operating income?",["$19,600 F", "$19,600 U", "$28,000 U", "$28,000 F", "$8,400 U"],"Activity variance = flexible budget − master budget (only volume differs). Change in units = 4,700 − 4,000 = 700. × $28 contribution margin per unit = $19,600. More units than planned → higher expected income → favorable. Fixed costs cancel out.","Flexible budgets outline p.5-6");
+Q("fx3","f-flex","A company budgets a $30 selling price, $22 variable cost per unit and $18,000 of fixed costs. The master budget was for 4,000 units, but 5,200 units were actually sold. What is operating income in the FLEXIBLE budget?",["$23,600", "$14,000", "$41,600", "$50,000", "$5,600"],"Flexible budget = budgeted prices and costs at the ACTUAL volume. Contribution margin per unit = $30 − $22 = $8. 5,200 × $8 = $41,600. Fixed costs stay $18,000. Operating income = $23,600.","Flexible budgets outline p.4");
+Q("fa3","f-flex","A company budgets a $30 selling price, $22 variable cost per unit and $18,000 of fixed costs. The master budget was for 4,000 units, but 5,200 units were actually sold. What is the ACTIVITY variance for operating income?",["$9,600 F", "$9,600 U", "$36,000 U", "$36,000 F", "$26,400 U"],"Activity variance = flexible budget − master budget (only volume differs). Change in units = 5,200 − 4,000 = 1,200. × $8 contribution margin per unit = $9,600. More units than planned → higher expected income → favorable. Fixed costs cancel out.","Flexible budgets outline p.5-6");
+Q("fx4","f-flex","A company budgets a $40 selling price, $18 variable cost per unit and $34,000 of fixed costs. The master budget was for 5,000 units, but 4,100 units were actually sold. What is operating income in the FLEXIBLE budget?",["$56,200", "$76,000", "$90,200", "$40,000", "$22,200"],"Flexible budget = budgeted prices and costs at the ACTUAL volume. Contribution margin per unit = $40 − $18 = $22. 4,100 × $22 = $90,200. Fixed costs stay $34,000. Operating income = $56,200.","Flexible budgets outline p.4");
+Q("fa4","f-flex","A company budgets a $40 selling price, $18 variable cost per unit and $34,000 of fixed costs. The master budget was for 5,000 units, but 4,100 units were actually sold. What is the ACTIVITY variance for operating income?",["$19,800 U", "$19,800 F", "$36,000 U", "$36,000 F", "$16,200 U"],"Activity variance = flexible budget − master budget (only volume differs). Change in units = 4,100 − 5,000 = -900. × $22 contribution margin per unit = $19,800. Fewer units than planned → lower expected income → unfavorable. Fixed costs cancel out.","Flexible budgets outline p.5-6");
+Q("fs0","f-flex","Budgeted price was $20.00 per unit for a planned 4,500 units. The company actually sold 5,000 units at $21.00 each. What is the revenue (spending) variance for sales?",["$5,000 F", "$5,000 U", "$15,000 U", "$15,000 F", "$4,500 U"],"Revenue variance = actual revenue vs. FLEXIBLE budget revenue (budgeted price × ACTUAL units). Actual = 5,000 × $21.00 = $105,000. Flexible = 5,000 × $20.00 = $100,000. Difference = $5,000. Actual revenue higher than it should have been → favorable.","Flexible budgets outline p.6");
+Q("fs1","f-flex","Budgeted price was $30.00 per unit for a planned 4,500 units. The company actually sold 4,000 units at $29.00 each. What is the revenue (spending) variance for sales?",["$4,000 U", "$4,000 F", "$19,000 U", "$19,000 F", "$4,500 U"],"Revenue variance = actual revenue vs. FLEXIBLE budget revenue (budgeted price × ACTUAL units). Actual = 4,000 × $29.00 = $116,000. Flexible = 4,000 × $30.00 = $120,000. Difference = $4,000. Actual revenue lower than it should have been → unfavorable.","Flexible budgets outline p.6");
+Q("fs2","f-flex","Budgeted price was $20.00 per unit for a planned 4,500 units. The company actually sold 5,000 units at $17.50 each. What is the revenue (spending) variance for sales?",["$12,500 U", "$12,500 F", "$2,500 U", "$2,500 F", "$11,250 U"],"Revenue variance = actual revenue vs. FLEXIBLE budget revenue (budgeted price × ACTUAL units). Actual = 5,000 × $17.50 = $87,500. Flexible = 5,000 × $20.00 = $100,000. Difference = $12,500. Actual revenue lower than it should have been → unfavorable.","Flexible budgets outline p.6");
+Q("fs3","f-flex","Budgeted price was $30.00 per unit for a planned 8,500 units. The company actually sold 8,000 units at $32.00 each. What is the revenue (spending) variance for sales?",["$16,000 F", "$16,000 U", "$1,000 U", "$1,000 F", "$17,000 U"],"Revenue variance = actual revenue vs. FLEXIBLE budget revenue (budgeted price × ACTUAL units). Actual = 8,000 × $32.00 = $256,000. Flexible = 8,000 × $30.00 = $240,000. Difference = $16,000. Actual revenue higher than it should have been → favorable.","Flexible budgets outline p.6");
+Q("f013","f-flex","Trendy Totes actually sold 6,000 bags for $135,000. Its flexible budget sales were $150,000 and master budget sales were $125,000. What are the revenue (spending) and activity variances for sales?",["$15,000 U revenue variance; $25,000 F activity variance", "$15,000 F; $25,000 U", "$10,000 F; $25,000 F", "$25,000 U; $15,000 F", "$10,000 F; $0"],"Revenue variance = actual 135,000 vs. flexible 150,000 → $15,000 U (sold at $22.50 instead of $25). Activity = flexible 150,000 vs. master 125,000 → $25,000 F (1,000 more bags). Together: $10,000 F master budget variance.","Flexible budgets outline p.6");
+Q("f014","f-flex","Newton Industries: actual sales $251,000 with a $6,000 F revenue variance at 28,000 units. Master budget is 31,800 units. What are master budget sales?",["$278,250", "$245,000", "$257,000", "$251,000", "$284,250"],"Flexible sales = 251,000 − 6,000 = 245,000 (a favorable revenue variance means actual was higher). Price = 245,000 ÷ 28,000 = $8.75. Master = 31,800 × $8.75 = $278,250.","Newton Industries solution #8");
+Q("f015","f-flex","Newton Industries' master budget has $198,750 of variable expenses for 31,800 units. Actual volume was 28,000 units. What are flexible budget variable expenses?",["$175,000", "$198,750", "$201,500", "$222,600", "$23,750"],"Variable cost per unit = 198,750 ÷ 31,800 = $6.25. Flexible = 28,000 × $6.25 = $175,000. The activity variance on variable expenses is $23,750 F (fewer units → lower expected cost).","Newton Industries solution #8");
+Q("f016","f-flex","Newton Industries' fixed expenses are $24,000 in the master budget and $15,000 actual. What are fixed expenses in the flexible budget, and what is the activity variance on them?",["$24,000; no activity variance", "$15,000; $9,000 F", "$24,000; $9,000 U", "$19,500; $4,500 F", "$15,000; no variance"],"Fixed costs in the flexible budget = master budget fixed costs ($24,000). Volume does not change them, so the activity variance is $0. The $9,000 F appears as a spending variance (actual 15,000 vs. flexible 24,000).","Newton Industries solution #8");
+Q("f017","f-flex","Shipping was budgeted at $0.50 per bag. Trendy Totes shipped 6,000 bags at an actual cost of $0.60 per bag. What is the spending variance for shipping?",["$600 U", "$500 U", "$1,100 U", "$600 F", "$3,600 U"],"Actual 6,000 × 0.60 = 3,600. Flexible 6,000 × 0.50 = 3,000. Spent $600 more than it should have at the actual volume → $600 U. (The activity variance is the other $500 U: 3,000 vs. master 2,500.)","Flexible budgets outline p.6");
+Q("s001","s-basics","A standard is",["a benchmark or budgeted amount", "the actual cost paid last month", "a type of fixed cost", "a variance that is always favorable", "the market price of a product"],"Standards are the budgeted amounts used in the budgeting process (for example 2 yards of canvas at $3 per yard).","Standard costs outline p.1");
+Q("s002","s-basics","Standards that allow for normal waste, machine breakdowns and inefficiency are called",["practical (attainable) standards", "ideal (perfection) standards", "static standards", "zero-based standards", "flexible standards"],"Practical (attainable) standards are based on currently attainable conditions, including normal waste. Ideal (perfection) standards assume perfect conditions with no waste or breakdowns.","Standard costs outline p.1");
+Q("s003","s-basics","Standards that assume no poor-quality materials, no waste and no machine breakdowns are",["ideal (perfection) standards", "practical standards", "attainable standards", "flexible standards", "activity standards"],"Ideal standards assume perfect conditions. They are hard to meet, so practical standards are more common.","Standard costs outline p.1");
+Q("s004","s-basics","Standard cost per unit for direct materials =",["standard quantity per unit × standard price per unit of input", "actual quantity × actual price", "standard quantity × actual price", "total materials cost ÷ units sold", "actual price − standard price"],"Trendy Totes: 2 yards × $3.00 per yard = $6.00 of materials per bag.","Standard costs outline p.1");
+Q("s005","s-basics","The spending variance for direct materials is split into",["a price variance and a quantity variance", "a rate variance and an efficiency variance", "an activity variance and a master budget variance", "a volume variance and a fixed variance", "a sales variance and a cost variance"],"Direct materials: price variance + quantity variance. Direct labor: rate variance + efficiency variance. These two pieces add up to the spending (flexible budget) variance.","Standard costs outline p.1-3");
+Q("s006","s-basics","What is the formula for the direct materials PRICE variance?",["|AP − SP| × actual quantity PURCHASED", "|AQ − SQ| × SP", "|AP − SP| × standard quantity", "|AQ − SQ| × AP", "(AP × AQ) − (SP × SQ)"],"Price variance = |actual price − standard price| × actual total quantity PURCHASED. Paying more than standard = U; less = F.","Standard costs outline p.2");
+Q("s007","s-basics","What is the formula for the direct materials QUANTITY variance?",["|actual quantity USED − standard quantity allowed| × standard price", "|AP − SP| × quantity purchased", "|AQ − SQ| × actual price", "standard quantity × standard price", "|AP − SP| × quantity used"],"Quantity variance = |ATQ used − STQ| × SP. STQ = standard quantity per unit × units ACTUALLY produced. Using more than allowed = U.","Standard costs outline p.2");
+Q("s008","s-basics","When the quantity of materials purchased differs from the quantity used,",["the price variance uses quantity purchased and the quantity variance uses quantity used", "both variances use quantity purchased", "both variances use quantity used", "the price variance uses quantity used", "neither variance can be calculated"],"The price is set when you BUY, so use quantity purchased. Waste happens when you USE, so use quantity used.","Standard costs outline p.2, p.7");
+Q("s009","s-basics","Standard total quantity (STQ) is",["the standard quantity per unit × the actual number of units produced", "the standard quantity per unit × budgeted units", "the actual quantity used", "the quantity purchased", "the master budget quantity"],"STQ is what SHOULD have been used for the units actually made. Great Toy: 5 pieces × 5,000 toys actually produced = 25,000 pieces (not the 6,000 planned).","Standard costs outline p.2; Great Toy solution");
+Q("s010","s-basics","The direct labor RATE variance is",["|actual rate − standard rate| × actual hours", "|actual hours − standard hours| × standard rate", "|actual rate − standard rate| × standard hours", "actual hours × actual rate", "|AH − SH| × actual rate"],"Rate variance = |AP − SP| × ATQ (actual hours worked). Paying more per hour than standard = U.","Standard costs outline p.3");
+Q("s011","s-basics","The direct labor EFFICIENCY variance is",["|actual hours − standard hours allowed| × standard rate", "|actual rate − standard rate| × actual hours", "|actual hours − standard hours| × actual rate", "actual hours × standard rate", "standard hours × actual rate"],"Efficiency variance = |ATQ − STQ| × SP. Using more hours than allowed for the actual output = U.","Standard costs outline p.3");
+Q("s012","s-basics","Which pair adds up to the direct labor SPENDING variance?",["Rate variance + efficiency variance", "Price variance + quantity variance", "Activity variance + rate variance", "Efficiency variance + activity variance", "Master budget variance + activity variance"],"Trendy Totes DL: $4,000 F rate + $10,000 U efficiency = $6,000 U spending. Add the $5,000 U activity variance to get the $11,000 U master budget variance.","Standard costs outline p.9");
+Q("sp0","s-dm","Mitchell Products has a standard of 1.5 lb of material per unit at $1.80 per lb. It produced 17,000 units. It bought 15,000 lb for $24,000 and used 15,000 lb. What is the direct materials PRICE variance?",["$3,000 F", "$3,000 U", "$5,100 U", "$5,100 F", "$18,900 U"],"Actual price = $24,000 ÷ 15,000 lb = $1.60. Price variance = |$1.60 − $1.80| × 15,000 lb PURCHASED = $3,000. Paid less than standard → F.","Standard costs outline p.2; Mitchell and Great Toy solutions");
+Q("sq0","s-dm","Mitchell Products has a standard of 1.5 lb of material per unit at $1.80 per lb. It produced 17,000 units. It bought 15,000 lb for $24,000 and used 15,000 lb. What is the direct materials QUANTITY variance?",["$18,900 F", "$18,900 U", "$16,800 U", "$16,800 F", "$3,000 U"],"STQ = 1.5 lb × 17,000 units actually produced = 25,500 lb. Quantity variance = |15,000 USED − 25,500| × $1.80 standard price = $18,900. Used less than allowed → F.","Standard costs outline p.2; Mitchell and Great Toy solutions");
+Q("sp1","s-dm","Great Toy Co. has a standard of 3 lb of material per unit at $1.80 per lb. It produced 4,000 units. It bought 51,000 lb for $81,600 and used 51,000 lb. What is the direct materials PRICE variance?",["$10,200 F", "$10,200 U", "$2,400 U", "$2,400 F", "$70,200 U"],"Actual price = $81,600 ÷ 51,000 lb = $1.60. Price variance = |$1.60 − $1.80| × 51,000 lb PURCHASED = $10,200. Paid less than standard → F.","Standard costs outline p.2; Mitchell and Great Toy solutions");
+Q("sq1","s-dm","Great Toy Co. has a standard of 3 lb of material per unit at $1.80 per lb. It produced 4,000 units. It bought 51,000 lb for $81,600 and used 51,000 lb. What is the direct materials QUANTITY variance?",["$70,200 U", "$70,200 F", "$62,400 U", "$62,400 F", "$10,200 U"],"STQ = 3 lb × 4,000 units actually produced = 12,000 lb. Quantity variance = |51,000 USED − 12,000| × $1.80 standard price = $70,200. Used more than allowed → U.","Standard costs outline p.2; Mitchell and Great Toy solutions");
+Q("sp2","s-dm","Windam Fries has a standard of 3 lb of material per unit at $1.80 per lb. It produced 16,000 units. It bought 57,000 lb for $96,900 and used 55,000 lb. What is the direct materials PRICE variance?",["$5,700 F", "$5,700 U", "$5,500 U", "$5,500 F", "$4,800 U"],"Actual price = $96,900 ÷ 57,000 lb = $1.70. Price variance = |$1.70 − $1.80| × 57,000 lb PURCHASED = $5,700. Paid less than standard → F.","Standard costs outline p.2; Mitchell and Great Toy solutions");
+Q("sq2","s-dm","Windam Fries has a standard of 3 lb of material per unit at $1.80 per lb. It produced 16,000 units. It bought 57,000 lb for $96,900 and used 55,000 lb. What is the direct materials QUANTITY variance?",["$12,600 U", "$12,600 F", "$11,900 U", "$11,900 F", "$16,200 U"],"STQ = 3 lb × 16,000 units actually produced = 48,000 lb. Quantity variance = |55,000 USED − 48,000| × $1.80 standard price = $12,600. Used more than allowed → U.","Standard costs outline p.2; Mitchell and Great Toy solutions");
+Q("sp3","s-dm","Boat Guard has a standard of 1.5 lb of material per unit at $1.80 per lb. It produced 6,000 units. It bought 55,000 lb for $88,000 and used 53,000 lb. What is the direct materials PRICE variance?",["$11,000 F", "$11,000 U", "$10,600 U", "$10,600 F", "$1,800 U"],"Actual price = $88,000 ÷ 55,000 lb = $1.60. Price variance = |$1.60 − $1.80| × 55,000 lb PURCHASED = $11,000. Paid less than standard → F.","Standard costs outline p.2; Mitchell and Great Toy solutions");
+Q("sq3","s-dm","Boat Guard has a standard of 1.5 lb of material per unit at $1.80 per lb. It produced 6,000 units. It bought 55,000 lb for $88,000 and used 53,000 lb. What is the direct materials QUANTITY variance?",["$79,200 U", "$79,200 F", "$70,400 U", "$70,400 F", "$82,800 U"],"STQ = 1.5 lb × 6,000 units actually produced = 9,000 lb. Quantity variance = |53,000 USED − 9,000| × $1.80 standard price = $79,200. Used more than allowed → U.","Standard costs outline p.2; Mitchell and Great Toy solutions");
+Q("sp4","s-dm","Summit Glassworks has a standard of 1.5 lb of material per unit at $4.50 per lb. It produced 6,000 units. It bought 19,000 lb for $77,900 and used 17,000 lb. What is the direct materials PRICE variance?",["$7,600 F", "$7,600 U", "$6,800 U", "$6,800 F", "$3,600 U"],"Actual price = $77,900 ÷ 19,000 lb = $4.10. Price variance = |$4.10 − $4.50| × 19,000 lb PURCHASED = $7,600. Paid less than standard → F.","Standard costs outline p.2; Mitchell and Great Toy solutions");
+Q("sq4","s-dm","Summit Glassworks has a standard of 1.5 lb of material per unit at $4.50 per lb. It produced 6,000 units. It bought 19,000 lb for $77,900 and used 17,000 lb. What is the direct materials QUANTITY variance?",["$36,000 U", "$36,000 F", "$32,800 U", "$32,800 F", "$45,000 U"],"STQ = 1.5 lb × 6,000 units actually produced = 9,000 lb. Quantity variance = |17,000 USED − 9,000| × $4.50 standard price = $36,000. Used more than allowed → U.","Standard costs outline p.2; Mitchell and Great Toy solutions");
+Q("sp5","s-dm","Brightline Paints has a standard of 1.5 lb of material per unit at $1.80 per lb. It produced 19,000 units. It bought 44,000 lb for $88,000 and used 44,000 lb. What is the direct materials PRICE variance?",["$8,800 U", "$8,800 F", "$5,700 U", "$5,700 F", "$27,900 U"],"Actual price = $88,000 ÷ 44,000 lb = $2.00. Price variance = |$2.00 − $1.80| × 44,000 lb PURCHASED = $8,800. Paid more than standard → U.","Standard costs outline p.2; Mitchell and Great Toy solutions");
+Q("sq5","s-dm","Brightline Paints has a standard of 1.5 lb of material per unit at $1.80 per lb. It produced 19,000 units. It bought 44,000 lb for $88,000 and used 44,000 lb. What is the direct materials QUANTITY variance?",["$27,900 U", "$27,900 F", "$31,000 U", "$31,000 F", "$8,800 U"],"STQ = 1.5 lb × 19,000 units actually produced = 28,500 lb. Quantity variance = |44,000 USED − 28,500| × $1.80 standard price = $27,900. Used more than allowed → U.","Standard costs outline p.2; Mitchell and Great Toy solutions");
+Q("sr0","s-dl","Edelman Oil's labor standard is 1 hour per unit at $7.50 per hour. It made 2,200 units using 2,030 hours, and total labor cost was $17,255. What is the direct labor RATE variance?",["$2,030 U", "$2,030 F", "$2,200 U", "$2,200 F", "$1,275 U"],"Actual rate = $17,255 ÷ 2,030 hours = $8.50. Rate variance = |$8.50 − $7.50| × 2,030 actual hours = $2,030. Paid more per hour → U.","Standard costs outline p.3; Edelman and Great Toy solutions");
+Q("se0","s-dl","Edelman Oil's labor standard is 1 hour per unit at $7.50 per hour. It made 2,200 units using 2,030 hours, and total labor cost was $17,255. What is the direct labor EFFICIENCY variance?",["$1,275 F", "$1,275 U", "$1,445 U", "$1,445 F", "$2,030 U"],"Standard hours allowed = 1 × 2,200 = 2,200 hours. Efficiency variance = |2,030 − 2,200| × $7.50 standard rate = $1,275. Used fewer hours than allowed → F.","Standard costs outline p.3; Edelman and Great Toy solutions");
+Q("sr1","s-dl","Great Toy Co.'s labor standard is 1 hour per unit at $20.00 per hour. It made 1,600 units using 1,520 hours, and total labor cost was $31,920. What is the direct labor RATE variance?",["$1,520 U", "$1,520 F", "$1,600 U", "$1,600 F", "$1,680 U"],"Actual rate = $31,920 ÷ 1,520 hours = $21.00. Rate variance = |$21.00 − $20.00| × 1,520 actual hours = $1,520. Paid more per hour → U.","Standard costs outline p.3; Edelman and Great Toy solutions");
+Q("se1","s-dl","Great Toy Co.'s labor standard is 1 hour per unit at $20.00 per hour. It made 1,600 units using 1,520 hours, and total labor cost was $31,920. What is the direct labor EFFICIENCY variance?",["$1,600 F", "$1,600 U", "$1,680 U", "$1,680 F", "$1,520 U"],"Standard hours allowed = 1 × 1,600 = 1,600 hours. Efficiency variance = |1,520 − 1,600| × $20.00 standard rate = $1,600. Used fewer hours than allowed → F.","Standard costs outline p.3; Edelman and Great Toy solutions");
+Q("sr2","s-dl","Windam Fries's labor standard is 0.3 hour per unit at $20.00 per hour. It made 1,500 units using 480 hours, and total labor cost was $9,744. What is the direct labor RATE variance?",["$144 U", "$144 F", "$135 U", "$135 F", "$600 U"],"Actual rate = $9,744 ÷ 480 hours = $20.30. Rate variance = |$20.30 − $20.00| × 480 actual hours = $144. Paid more per hour → U.","Standard costs outline p.3; Edelman and Great Toy solutions");
+Q("se2","s-dl","Windam Fries's labor standard is 0.3 hour per unit at $20.00 per hour. It made 1,500 units using 480 hours, and total labor cost was $9,744. What is the direct labor EFFICIENCY variance?",["$600 U", "$600 F", "$609 U", "$609 F", "$144 U"],"Standard hours allowed = 0.3 × 1,500 = 450 hours. Efficiency variance = |480 − 450| × $20.00 standard rate = $600. Used more hours than allowed → U.","Standard costs outline p.3; Edelman and Great Toy solutions");
+Q("sr3","s-dl","Boat Guard's labor standard is 0.25 hour per unit at $10.00 per hour. It made 4,800 units using 1,230 hours, and total labor cost was $12,669. What is the direct labor RATE variance?",["$369 U", "$369 F", "$360 U", "$360 F", "$300 U"],"Actual rate = $12,669 ÷ 1,230 hours = $10.30. Rate variance = |$10.30 − $10.00| × 1,230 actual hours = $369. Paid more per hour → U.","Standard costs outline p.3; Edelman and Great Toy solutions");
+Q("se3","s-dl","Boat Guard's labor standard is 0.25 hour per unit at $10.00 per hour. It made 4,800 units using 1,230 hours, and total labor cost was $12,669. What is the direct labor EFFICIENCY variance?",["$300 U", "$300 F", "$309 U", "$309 F", "$369 U"],"Standard hours allowed = 0.25 × 4,800 = 1,200 hours. Efficiency variance = |1,230 − 1,200| × $10.00 standard rate = $300. Used more hours than allowed → U.","Standard costs outline p.3; Edelman and Great Toy solutions");
+Q("sr4","s-dl","Riverbend Dental's labor standard is 0.25 hour per unit at $15.00 per hour. It made 2,100 units using 555 hours, and total labor cost was $8,602.50. What is the direct labor RATE variance?",["$277.50 U", "$277.50 F", "$262.50 U", "$262.50 F", "$450 U"],"Actual rate = $8,602.50 ÷ 555 hours = $15.50. Rate variance = |$15.50 − $15.00| × 555 actual hours = $277.50. Paid more per hour → U.","Standard costs outline p.3; Edelman and Great Toy solutions");
+Q("se4","s-dl","Riverbend Dental's labor standard is 0.25 hour per unit at $15.00 per hour. It made 2,100 units using 555 hours, and total labor cost was $8,602.50. What is the direct labor EFFICIENCY variance?",["$450 U", "$450 F", "$465 U", "$465 F", "$277.50 U"],"Standard hours allowed = 0.25 × 2,100 = 525 hours. Efficiency variance = |555 − 525| × $15.00 standard rate = $450. Used more hours than allowed → U.","Standard costs outline p.3; Edelman and Great Toy solutions");
+Q("sr5","s-dl","Tidewater Print's labor standard is 2/3 hour per unit at $7.50 per hour. It made 3,800 units using 2,463 hours, and total labor cost was $23,398.50. What is the direct labor RATE variance?",["$4,926 U", "$4,926 F", "$5,066 U", "$5,066 F", "$525 U"],"Actual rate = $23,398.50 ÷ 2,463 hours = $9.50. Rate variance = |$9.50 − $7.50| × 2,463 actual hours = $4,926. Paid more per hour → U.","Standard costs outline p.3; Edelman and Great Toy solutions");
+Q("se5","s-dl","Tidewater Print's labor standard is 2/3 hour per unit at $7.50 per hour. It made 3,800 units using 2,463 hours, and total labor cost was $23,398.50. What is the direct labor EFFICIENCY variance?",["$525 F", "$525 U", "$665 U", "$665 F", "$4,926 U"],"Standard hours allowed = 2/3 × 3,800 = 2,533 hours. Efficiency variance = |2,463 − 2,533| × $7.50 standard rate = $525. Used fewer hours than allowed → F.","Standard costs outline p.3; Edelman and Great Toy solutions");
+Q("s013","s-dm","Trendy Totes' standard is 2 yards at $3.00. It made 6,000 bags using 10,500 yards bought at $3.20. What are the price and quantity variances?",["$2,100 U price; $4,500 F quantity", "$2,100 F price; $4,500 U quantity", "$2,400 F price; $2,100 U quantity", "$4,500 U price; $2,100 F quantity", "$2,400 U price; $4,500 F quantity"],"Price: |3.20 − 3.00| × 10,500 = $2,100 U (paid more). Quantity: |10,500 − 12,000| × $3.00 = $4,500 F (used less). Net $2,400 F = the spending variance.","Standard costs outline p.6");
+Q("s014","s-dm","Trendy Totes bought 11,000 yards at $3.20 but used only 10,500 yards for 6,000 bags (standard 2 yards at $3). What is the price variance?",["$2,200 U", "$2,100 U", "$4,500 F", "$2,200 F", "$1,500 F"],"Price variance uses quantity PURCHASED: |3.20 − 3.00| × 11,000 = $2,200 U. The quantity variance still uses 10,500 used → $4,500 F.","Standard costs outline p.8");
+Q("s015","s-dl","Trendy Totes' labor standard is 1/2 hour at $10. It made 6,000 bags using 4,000 hours at $9.00. What are the rate and efficiency variances?",["$4,000 F rate; $10,000 U efficiency", "$4,000 U rate; $10,000 F efficiency", "$6,000 U rate; $4,000 F efficiency", "$3,000 F rate; $10,000 U efficiency", "$4,000 F rate; $9,000 U efficiency"],"Rate: |9 − 10| × 4,000 = $4,000 F. Efficiency: |4,000 − 3,000| × $10 = $10,000 U. Spending variance = $6,000 U.","Standard costs outline p.9");
+Q("s016","s-dl","Great Toy budgeted 1/2 hour at $7.50 for 6,000 toys but made only 5,000 toys using 2,700 hours costing $21,600. What is the direct labor ACTIVITY variance?",["$3,750 F", "$900 F", "$2,850 U", "$1,500 U", "$3,750 U"],"Activity = flexible vs. master: flexible = ½ × $7.50 × 5,000 = $18,750; master = ½ × $7.50 × 6,000 = $22,500. Lower expected cost → $3,750 F.","Great Toy solution #2");
+Q("s017","s-dl","Same Great Toy data (1/2 hour at $7.50, 5,000 toys made, 2,700 hours costing $21,600). What is the direct labor SPENDING variance?",["$2,850 U", "$3,750 F", "$900 F", "$1,500 U", "$1,350 U"],"Spending = actual $21,600 vs. flexible $18,750 → $2,850 U. Check: rate $1,350 U (|8.00 − 7.50| × 2,700) + efficiency $1,500 U (|2,700 − 2,500| × 7.50) = $2,850 U.","Great Toy solution #3");
+Q("s018","s-dl","Same Great Toy data. What is the direct labor MASTER budget variance?",["$900 F", "$2,850 U", "$3,750 F", "$21,600 U", "$6,600 U"],"Master = actual $21,600 vs. master budget $22,500 → $900 F. Also = $2,850 U spending + $3,750 F activity = $900 F.","Great Toy solution #1");
+Q("s019","s-interp","Windam bought cheaper potatoes ($0.85 vs. $1.00 standard) and used 3,000 more pounds than standard. What is a plausible explanation?",["Lower-grade potatoes were cheaper but more had to be thrown out", "Workers were paid overtime", "The standard was set too high", "Fewer bags were produced", "The company bought too few potatoes"],"Favorable price variance + unfavorable quantity variance often means lower-quality materials: cheaper to buy, but more waste. Workers may also need more time to sort them (an unfavorable efficiency variance).","Windam solution #11");
+Q("s020","s-interp","Boat Guard paid $1.30 per foot of vinyl (standard $1.40) but used 100,000 extra feet. It paid workers $13 (standard $12) but used 140 fewer hours. What does this pattern suggest?",["Managers are making trade-offs: cheaper material caused waste; better-paid workers were more efficient but not enough to offset the higher rate", "Everything went better than planned", "The standards are wrong", "Workers were less efficient", "There are no trade-offs"],"Materials: $178,000 F price but $140,000 U quantity (cheap vinyl, more waste). Labor: $4,900 U rate but $1,680 F efficiency (pricier workers, a bit faster).","Boat Guard solution #12");
+Q("s021","s-interp","An unfavorable direct labor efficiency variance could be caused by",["low-quality materials that take longer to work with", "paying workers less than standard", "using fewer hours than allowed", "buying materials at a discount", "producing fewer units than budgeted"],"Efficiency is about HOURS. Poor materials, untrained workers or machine breakdowns can push hours above standard → U. Paying less per hour affects the RATE variance, not efficiency.","Standard costs outline p.3");
+Q("s022","s-interp","Which variance is the purchasing manager usually most responsible for?",["Direct materials price variance", "Direct labor efficiency variance", "Direct materials quantity variance", "Sales activity variance", "Direct labor rate variance"],"The price variance comes from what was paid when buying materials, so purchasing controls it. Production controls quantity and efficiency.","Standard costs outline p.2");
+Q("d001","d-basics","Decentralization is",["spreading decision-making authority to segment managers instead of keeping it with a few top executives", "merging all divisions into one", "having top management run day-to-day operations", "eliminating budgets", "selling off divisions"],"In a decentralized organization, top management delegates decisions to segment (division) managers, and uses performance evaluation to keep control.","Decentralized outline p.1");
+Q("d002","d-basics","Which is an ADVANTAGE of decentralization?",["It frees up top management's time for strategy", "It eliminates goal congruence problems", "It prevents duplication of costs", "It guarantees coordination between divisions", "It removes the need for performance evaluation"],"Advantages: frees top management's time, uses expert knowledge, improves customer relations, provides training, improves motivation and retention.","Decentralized outline p.1");
+Q("d003","d-basics","Which is a DISADVANTAGE of decentralization?",["Goal congruence issues", "Improves motivation and retention", "Encourages use of expert knowledge", "Provides training for lower-level managers", "Improves customer relations"],"Disadvantages: possible bad decisions, lack of coordination and sharing of ideas, possible duplication of costs, and goal congruence issues.","Decentralized outline p.1");
+Q("d004","d-basics","A goal congruence problem happens when",["a division manager makes a decision that helps the division (or the manager) but hurts the company as a whole", "all managers share the same goals", "the company sets a target rate of return", "divisions use market prices", "a cost center controls its costs"],"Example: a manager evaluated on ROI rejects a project earning 17% because the division already earns 25%, even though the company only requires 15%.","Transcript: decentralized organizations");
+Q("d005","d-centers","A manager responsible only for controlling costs runs a",["cost center", "profit center", "investment center", "revenue center only", "transfer center"],"Cost center: only costs (manufacturing plant, production dept., accounting, HR). Profit center: revenues and costs. Investment center: revenues, costs AND the assets used.","Decentralized outline p.1");
+Q("d006","d-centers","An individual store location or a product line is usually a",["profit center", "cost center", "investment center", "service department", "standard cost center"],"A store manager is responsible for both revenues and costs, so it is a profit center, judged on actual vs. budgeted profit.","Decentralized outline p.1");
+Q("d007","d-centers","The North America division of a company, whose manager decides how to use the division's assets, is a(n)",["investment center", "cost center", "profit center", "production department", "revenue center"],"Investment centers are large divisions run almost like separate companies. They are judged with ROI and residual income because they control assets.","Decentralized outline p.1");
+Q("d008","d-centers","Which department is an example of a cost center?",["Human resources department", "A retail store location", "A product line", "The Europe division", "A franchise restaurant"],"HR, accounting, production departments and manufacturing plants mostly incur costs, so they are cost centers.","Decentralized outline p.1");
+Q("d009","d-centers","Responsibility accounting evaluates segment managers based on",["the things they have control over or are responsible for", "company-wide net income only", "the stock price", "the CEO's decisions", "last year's results"],"Managers should be judged on what they can control: costs for a cost center, profit for a profit center, profit relative to assets for an investment center.","Transcript: responsibility accounting");
+Q("d010","d-roi","ROI =",["Operating income ÷ average operating assets", "Sales ÷ operating income", "Operating income − (target rate × assets)", "Assets ÷ sales", "Net income ÷ sales"],"ROI measures how much income a division earns compared with the assets it uses. It can also be written as sales margin × capital turnover.","Decentralized outline p.2");
+Q("d011","d-roi","Sales margin measures",["operating income earned on each dollar of sales (operating income ÷ sales)", "sales generated per dollar of assets", "income above the target return", "assets per dollar of sales", "the transfer price"],"Sales margin = operating income ÷ sales: profitability. Capital (asset) turnover = sales ÷ assets: how efficiently assets generate sales.","Decentralized outline p.2");
+Q("d012","d-roi","Capital turnover (asset turnover) =",["Sales ÷ assets", "Operating income ÷ sales", "Assets ÷ operating income", "Operating income ÷ assets", "Sales − assets"],"Turnover shows how many dollars of sales each dollar of assets produces. Margin × turnover = (income ÷ sales) × (sales ÷ assets) = income ÷ assets = ROI.","Decentralized outline p.2");
+Q("d013","d-roi","Snow Sports and Non-Snow Sports both have an 18% sales margin, but Non-Snow has a higher ROI. Why?",["Non-Snow has a higher capital turnover: it generates more sales with its assets", "Non-Snow has a higher sales margin", "Snow Sports has lower assets", "Non-Snow has a lower target rate", "ROI ignores assets"],"Snow: 18% × 1.289 = 23.2%. Non-Snow: 18% × 1.375 = 24.75%. Same margin, so the difference comes from turnover. Breaking ROI into margin × turnover gives this insight.","Epic Sports solution #2-5");
+Q("d014","d-roi","Which action would INCREASE a division's ROI, all else equal?",["Getting rid of nonproductive assets", "Buying assets that earn nothing", "Lowering sales while keeping assets the same", "Increasing operating costs", "Lowering the sales margin"],"ROI = income ÷ assets. Cutting unproductive assets raises turnover and ROI. Raising margins (more income per sales dollar) also raises ROI.","Transcript: ROI");
+Q("d015","d-ri","Residual income =",["Operating income − (target rate of return × assets)", "Operating income ÷ assets", "Sales × target rate", "Assets − operating income", "Operating income × target rate"],"Residual income = the income left over AFTER the minimum income the company expects (target rate × assets). Positive = beating the target; negative = falling short.","Decentralized outline p.3");
+Q("d016","d-ri","A negative residual income means",["the division's operating income is below the company's required minimum return", "the division lost money", "ROI is negative", "the division has no assets", "the transfer price is too low"],"Negative RI = income below target rate × assets. The division can still be profitable; it just earns less than the hurdle rate.","Decentralized outline p.3");
+Q("d017","d-ri","What is the main drawback of residual income?",["It cannot fairly compare divisions of different sizes", "It discourages projects that beat the target rate", "It ignores assets", "It is a percentage", "It cannot be negative"],"Bigger divisions tend to have bigger RI just because they are bigger. ROI's drawback is different: it can make managers reject good projects that would lower their percentage.","Transcript: residual income");
+Q("d018","d-ri","Why does residual income avoid the goal congruence problem that ROI can cause?",["Any project earning above the company's target rate raises the division's RI, no matter how well the division already performs", "RI ignores the target rate", "RI is always higher than ROI", "RI only looks at sales", "Managers are never evaluated on RI"],"With RI, a project helps the division whenever it beats the COMPANY's target, which is exactly what the company wants. With ROI, a manager compares the project to the division's own (maybe high) ROI.","Transcript: ROI vs RI");
+Q("dr0","d-roi","The West Division has sales of $3,125,000, operating income of $250,000 and average operating assets of $2,500,000. The company's target rate of return is 14%. What is its ROI?",["10%", "8%", "125%", "14%", "17%"],"ROI = operating income ÷ assets = $250,000 ÷ $2,500,000 = 10%. Check with the expanded formula: sales margin $250,000 ÷ $3,125,000 = 8% × capital turnover $3,125,000 ÷ $2,500,000 = 1.25 → 8% × 1.25 = 10%.","Decentralized outline p.2-4; Epic Sports solution");
+Q("dt0","d-roi","The West Division has sales of $3,125,000, operating income of $250,000 and average operating assets of $2,500,000. The company's target rate of return is 14%. What is its capital turnover?",["1.25", "0.08", "0.80", "0.10", "1.50"],"Capital turnover = sales ÷ assets = $3,125,000 ÷ $2,500,000 = 1.25. The division generates $1.25 of sales for every $1 of assets.","Decentralized outline p.2");
+Q("di0","d-ri","The West Division has sales of $3,125,000, operating income of $250,000 and average operating assets of $2,500,000. The company's target rate of return is 14%. What is its residual income?",["-$100,000", "$100,000", "$250,000", "$350,000", "$187,500"],"Minimum acceptable income = 14% × $2,500,000 = $350,000. Residual income = $250,000 − $350,000 = -$100,000. Negative: the division earns less than the target, matching an ROI below 14%.","Decentralized outline p.3-4; Epic Sports solution #6");
+Q("dr1","d-roi","The Snow Sports Division has sales of $7,600,000, operating income of $760,000 and average operating assets of $3,800,000. The company's target rate of return is 14%. What is its ROI?",["20%", "10%", "200%", "14%", "27%"],"ROI = operating income ÷ assets = $760,000 ÷ $3,800,000 = 20%. Check with the expanded formula: sales margin $760,000 ÷ $7,600,000 = 10% × capital turnover $7,600,000 ÷ $3,800,000 = 2 → 10% × 2 = 20%.","Decentralized outline p.2-4; Epic Sports solution");
+Q("dt1","d-roi","The Snow Sports Division has sales of $7,600,000, operating income of $760,000 and average operating assets of $3,800,000. The company's target rate of return is 14%. What is its capital turnover?",["2.00", "0.10", "0.50", "0.20", "2.25"],"Capital turnover = sales ÷ assets = $7,600,000 ÷ $3,800,000 = 2.00. The division generates $2.00 of sales for every $1 of assets.","Decentralized outline p.2");
+Q("di1","d-ri","The Snow Sports Division has sales of $7,600,000, operating income of $760,000 and average operating assets of $3,800,000. The company's target rate of return is 14%. What is its residual income?",["$228,000", "-$228,000", "$760,000", "$532,000", "$304,000"],"Minimum acceptable income = 14% × $3,800,000 = $532,000. Residual income = $760,000 − $532,000 = $228,000. Positive: the division beats the target, which matches ROI of 20% being above 14%.","Decentralized outline p.3-4; Epic Sports solution #6");
+Q("dr2","d-roi","The Coastal Division has sales of $2,350,000, operating income of $235,000 and average operating assets of $2,350,000. The company's target rate of return is 18%. What is its ROI?",["10%", "100%", "18%", "19%", "8%"],"ROI = operating income ÷ assets = $235,000 ÷ $2,350,000 = 10%. Check with the expanded formula: sales margin $235,000 ÷ $2,350,000 = 10% × capital turnover $2,350,000 ÷ $2,350,000 = 1 → 10% × 1 = 10%.","Decentralized outline p.2-4; Epic Sports solution");
+Q("dt2","d-roi","The Coastal Division has sales of $2,350,000, operating income of $235,000 and average operating assets of $2,350,000. The company's target rate of return is 18%. What is its capital turnover?",["1.00", "0.10", "1.25", "2.00", "3.00"],"Capital turnover = sales ÷ assets = $2,350,000 ÷ $2,350,000 = 1.00. The division generates $1.00 of sales for every $1 of assets.","Decentralized outline p.2");
+Q("di2","d-ri","The Coastal Division has sales of $2,350,000, operating income of $235,000 and average operating assets of $2,350,000. The company's target rate of return is 18%. What is its residual income?",["-$188,000", "$188,000", "$235,000", "$423,000", "$282,000"],"Minimum acceptable income = 18% × $2,350,000 = $423,000. Residual income = $235,000 − $423,000 = -$188,000. Negative: the division earns less than the target, matching an ROI below 18%.","Decentralized outline p.3-4; Epic Sports solution #6");
+Q("dr3","d-roi","The Mountain Division has sales of $1,320,000, operating income of $264,000 and average operating assets of $1,100,000. The company's target rate of return is 14%. What is its ROI?",["24%", "20%", "120%", "14%", "31%"],"ROI = operating income ÷ assets = $264,000 ÷ $1,100,000 = 24%. Check with the expanded formula: sales margin $264,000 ÷ $1,320,000 = 20% × capital turnover $1,320,000 ÷ $1,100,000 = 1.2 → 20% × 1.2 = 24%.","Decentralized outline p.2-4; Epic Sports solution");
+Q("dt3","d-roi","The Mountain Division has sales of $1,320,000, operating income of $264,000 and average operating assets of $1,100,000. The company's target rate of return is 14%. What is its capital turnover?",["1.20", "0.20", "0.83", "0.24", "1.45"],"Capital turnover = sales ÷ assets = $1,320,000 ÷ $1,100,000 = 1.20. The division generates $1.20 of sales for every $1 of assets.","Decentralized outline p.2");
+Q("di3","d-ri","The Mountain Division has sales of $1,320,000, operating income of $264,000 and average operating assets of $1,100,000. The company's target rate of return is 14%. What is its residual income?",["$110,000", "-$110,000", "$264,000", "$154,000", "$79,200"],"Minimum acceptable income = 14% × $1,100,000 = $154,000. Residual income = $264,000 − $154,000 = $110,000. Positive: the division beats the target, which matches ROI of 24% being above 14%.","Decentralized outline p.3-4; Epic Sports solution #6");
+Q("dr4","d-roi","The Midwest Division has sales of $675,000, operating income of $67,500 and average operating assets of $1,350,000. The company's target rate of return is 16%. What is its ROI?",["5%", "10%", "50%", "16%", "13%"],"ROI = operating income ÷ assets = $67,500 ÷ $1,350,000 = 5%. Check with the expanded formula: sales margin $67,500 ÷ $675,000 = 10% × capital turnover $675,000 ÷ $1,350,000 = 0.5 → 10% × 0.5 = 5%.","Decentralized outline p.2-4; Epic Sports solution");
+Q("dt4","d-roi","The Midwest Division has sales of $675,000, operating income of $67,500 and average operating assets of $1,350,000. The company's target rate of return is 16%. What is its capital turnover?",["0.50", "0.10", "2.00", "0.05", "0.75"],"Capital turnover = sales ÷ assets = $675,000 ÷ $1,350,000 = 0.50. The division generates $0.50 of sales for every $1 of assets.","Decentralized outline p.2");
+Q("di4","d-ri","The Midwest Division has sales of $675,000, operating income of $67,500 and average operating assets of $1,350,000. The company's target rate of return is 16%. What is its residual income?",["-$148,500", "$148,500", "$67,500", "$216,000", "$40,500"],"Minimum acceptable income = 16% × $1,350,000 = $216,000. Residual income = $67,500 − $216,000 = -$148,500. Negative: the division earns less than the target, matching an ROI below 16%.","Decentralized outline p.3-4; Epic Sports solution #6");
+Q("dr5","d-roi","The Pacific Division has sales of $3,950,000, operating income of $474,000 and average operating assets of $3,950,000. The company's target rate of return is 10%. What is its ROI?",["12%", "100%", "10%", "17%", "9.60%"],"ROI = operating income ÷ assets = $474,000 ÷ $3,950,000 = 12%. Check with the expanded formula: sales margin $474,000 ÷ $3,950,000 = 12% × capital turnover $3,950,000 ÷ $3,950,000 = 1 → 12% × 1 = 12%.","Decentralized outline p.2-4; Epic Sports solution");
+Q("dt5","d-roi","The Pacific Division has sales of $3,950,000, operating income of $474,000 and average operating assets of $3,950,000. The company's target rate of return is 10%. What is its capital turnover?",["1.00", "0.12", "1.25", "2.00", "3.00"],"Capital turnover = sales ÷ assets = $3,950,000 ÷ $3,950,000 = 1.00. The division generates $1.00 of sales for every $1 of assets.","Decentralized outline p.2");
+Q("di5","d-ri","The Pacific Division has sales of $3,950,000, operating income of $474,000 and average operating assets of $3,950,000. The company's target rate of return is 10%. What is its residual income?",["$79,000", "-$79,000", "$474,000", "$395,000", "$118,500"],"Minimum acceptable income = 10% × $3,950,000 = $395,000. Residual income = $474,000 − $395,000 = $79,000. Positive: the division beats the target, which matches ROI of 12% being above 10%.","Decentralized outline p.3-4; Epic Sports solution #6");
+Q("dn0","d-ri","A division currently earns a 25% ROI. The company's target rate is 12%. A new project needs $300,000 and would earn $39,000 per year (13%). If the manager is evaluated on ROI, will the manager want to invest, and is the project good for the company?",["No, the manager would not invest; the project is good for the company", "Yes, the manager would invest; the project is good for the company", "Yes, the manager would invest; the project is bad for the company", "No, the manager would not invest; the project is bad for the company"],"Manager on ROI compares the project's 13% with the division's current 25%: lower, so it would pull ROI down → reject. The company compares 13% with its 12% target: above → good for the company. This is a goal congruence problem. (Project RI = $39,000 − 12% × $300,000 = $3,000.)","Decentralized outline p.4; Epic Sports #7-9");
+Q("dn1","d-ri","A division currently earns a 8% ROI. The company's target rate is 14%. A new project needs $400,000 and would earn $44,000 per year (11%). If the manager is evaluated on ROI, will the manager want to invest, and is the project good for the company?",["Yes, the manager would invest; the project is bad for the company", "Yes, the manager would invest; the project is good for the company", "No, the manager would not invest; the project is good for the company", "No, the manager would not invest; the project is bad for the company"],"Manager on ROI compares the project's 11% with the division's current 8%: higher, so it raises ROI → invest. The company compares 11% with its 14% target: below → bad for the company. This is a goal congruence problem. (Project RI = $44,000 − 14% × $400,000 = -$12,000.)","Decentralized outline p.4; Epic Sports #7-9");
+Q("dn2","d-ri","A division currently earns a 20% ROI. The company's target rate is 12%. A new project needs $500,000 and would earn $65,000 per year (13%). If the manager is evaluated on ROI, will the manager want to invest, and is the project good for the company?",["No, the manager would not invest; the project is good for the company", "Yes, the manager would invest; the project is good for the company", "Yes, the manager would invest; the project is bad for the company", "No, the manager would not invest; the project is bad for the company"],"Manager on ROI compares the project's 13% with the division's current 20%: lower, so it would pull ROI down → reject. The company compares 13% with its 12% target: above → good for the company. This is a goal congruence problem. (Project RI = $65,000 − 12% × $500,000 = $5,000.)","Decentralized outline p.4; Epic Sports #7-9");
+Q("dn3","d-ri","A division currently earns a 8% ROI. The company's target rate is 16%. A new project needs $500,000 and would earn $55,000 per year (11%). If the manager is evaluated on ROI, will the manager want to invest, and is the project good for the company?",["Yes, the manager would invest; the project is bad for the company", "Yes, the manager would invest; the project is good for the company", "No, the manager would not invest; the project is good for the company", "No, the manager would not invest; the project is bad for the company"],"Manager on ROI compares the project's 11% with the division's current 8%: higher, so it raises ROI → invest. The company compares 11% with its 16% target: below → bad for the company. This is a goal congruence problem. (Project RI = $55,000 − 16% × $500,000 = -$25,000.)","Decentralized outline p.4; Epic Sports #7-9");
+Q("d019","d-ri","West Division has a 25% ROI and the target is 15%. A $100,000 project would earn $17,000. If evaluated on residual income, what happens?",["The project's RI is $2,000, so the manager would invest", "The project's RI is $17,000, so the manager would invest", "The project lowers RI by $8,000, so the manager rejects it", "RI is 17%, so the manager rejects it", "The project's RI is −$8,000"],"Project RI = 17,000 − 15% × 100,000 = 17,000 − 15,000 = $2,000. It raises the division's RI, so both the manager and the company want it.","Decentralized outline p.4");
+Q("d020","d-ri","A poorly performing division has a 5% ROI. The company target is 15%. A project earns 10%. If the manager is evaluated on ROI, what happens?",["The manager invests because 10% raises the division's ROI, even though the project is below the company's 15% target", "The manager rejects it because it is below 15%", "The manager rejects it because it lowers ROI", "The company wants the project", "Residual income would also favor it"],"ROI only compares against the division's current 5%, so a 10% project looks good to the manager. But it earns less than the 15% the company requires → goal congruence problem.","Transcript: ROI drawback");
+Q("t001","d-tp","A transfer price is",["the price one division charges another division of the same company", "the market price charged to outside customers", "the cost of shipping goods", "the price of a company's stock", "the price paid to outside suppliers"],"When one division supplies another division, the price charged is the transfer price. It is REVENUE to the selling division and a COST to the buying division.","Decentralized outline p.5");
+Q("t002","d-tp","How does the transfer price affect the company as a whole?",["It has no effect; it is revenue to one division and an equal cost to the other", "It increases company profit", "It decreases company profit", "It always increases taxes", "It changes the company's sales to outside customers"],"Division X: sells for $30 (revenue). Division Y: pays $30 (cost). Inside the company they cancel. Total profit = $45 − $24 − $10 = $11 either way.","Decentralized outline p.6");
+Q("t003","d-tp","Which division wants the transfer price as HIGH as possible?",["The selling division", "The buying division", "Both divisions", "Neither division", "The corporate office"],"The transfer price is revenue to the seller (wants it high) and a cost to the buyer (wants it low), so the two divisions have opposite agendas.","Transcript: transfer pricing");
+Q("t004","d-tp","When there is no outside market for the product, which transfer pricing method is typically used?",["Cost or cost-plus a markup", "Market price", "The buyer's selling price", "Zero", "The competitor's price"],"Three methods: market price (if an outside market exists), negotiated price, and cost or cost-plus (often used when there's no outside market).","Decentralized outline p.5");
+Q("t005","d-tp","If the selling division has EXCESS capacity, the lowest acceptable transfer price is",["its variable (avoidable) cost", "the market price", "its full absorption cost", "zero", "the buyer's selling price"],"With excess capacity the seller gives up no outside sales, so it only needs to cover the costs it would avoid by not making the part: variable costs plus any avoidable fixed costs.","Decentralized outline p.5");
+Q("t006","d-tp","If the selling division is at FULL capacity, the lowest acceptable transfer price is",["the market price", "its variable cost", "its fixed cost", "zero", "its absorption cost"],"At full capacity, every unit sent inside means losing an outside sale at the market price, so the seller won't accept less than market.","Decentralized outline p.5");
+Q("t007","d-tp","The HIGHEST acceptable transfer price, from the buying division's view, is",["the market price", "the seller's variable cost", "the seller's absorption cost", "there is no maximum", "the seller's fixed cost"],"The buyer won't pay more than it can pay an outside supplier. Market price is also usually the most FAIR transfer price, since each division earns or pays what it would anyway.","Decentralized outline p.5");
+Q("t008","d-tp","Dexter's Electrical Division makes component K32: variable cost $8, absorption cost $13, market price $17. It has excess capacity. What is the lowest acceptable transfer price?",["$8", "$13", "$17", "$5", "$9"],"Excess capacity → lowest TP = variable (avoidable) cost = $8. The fixed part of the $13 absorption cost is incurred anyway.","Dexter solution #1");
+Q("t009","d-tp","Same Dexter data ($8 variable, $13 absorption, $17 market). If Electrical charges $20, what happens to the company if Lawn Mower buys outside at $17?",["The company is $9 per unit worse off ($17 paid outside vs. $8 cost to make inside)", "The company saves $3 per unit", "The company is $3 worse off", "No effect because transfer prices cancel", "The company is $4 worse off"],"From the company's view the real cost of making it inside is the $8 avoidable cost, not the $20 transfer price. Buying outside costs $17. $17 − $8 = $9 per unit worse.","Dexter solution #5");
+Q("t010","d-tp","Table Division: DM $136, DL $200, variable MOH $40, fixed MOH $39 (one-third avoidable). Excess capacity. What is the minimum acceptable transfer price?",["$389", "$415", "$376", "$448", "$384"],"Avoidable cost = 136 + 200 + 40 + (⅓ × 39 = 13) = $389. The other $26 of fixed overhead stays no matter what.","Decentralized outline p.7");
+Q("t011","d-tp","Same Table/Chair data (avoidable cost $389). Chair can buy the part outside for $448. Table wants to charge $480. If Chair buys outside, the company is",["$59 per unit worse off", "$32 per unit better off", "$91 per unit worse off", "not affected", "$64 per unit worse off"],"Inside, the company really pays only the $389 avoidable cost. Outside costs $448. $448 − $389 = $59 per unit worse off. The $480 transfer price doesn't matter to the company as a whole.","Decentralized outline p.7");
+Q("tx0","d-tp","Division X spends $36 to make a part and sells it to Division Y for $44. Division Y spends another $14 to finish the product and sells it to outside customers for $68. What is the profit per unit for the COMPANY as a whole?",["$18", "$8", "$10", "$24", "$26"],"X profit = $44 − $36 = $8. Y profit = $68 − $44 − $14 = $10. Company = $8 + $10 = $18. Check without the transfer price: $68 − $36 − $14 = $18. The transfer price cancels out.","Decentralized outline p.6");
+Q("tx1","d-tp","Division X spends $26 to make a part and sells it to Division Y for $35. Division Y spends another $13 to finish the product and sells it to outside customers for $51. What is the profit per unit for the COMPANY as a whole?",["$12", "$9", "$3", "$16", "$21"],"X profit = $35 − $26 = $9. Y profit = $51 − $35 − $13 = $3. Company = $9 + $3 = $12. Check without the transfer price: $51 − $26 − $13 = $12. The transfer price cancels out.","Decentralized outline p.6");
+Q("tx2","d-tp","Division X spends $31 to make a part and sells it to Division Y for $41. Division Y spends another $9 to finish the product and sells it to outside customers for $55. What is the profit per unit for the COMPANY as a whole?",["$15", "$10", "$5", "$14", "$25"],"X profit = $41 − $31 = $10. Y profit = $55 − $41 − $9 = $5. Company = $10 + $5 = $15. Check without the transfer price: $55 − $31 − $9 = $15. The transfer price cancels out.","Decentralized outline p.6");
+Q("tx3","d-tp","Division X spends $21 to make a part and sells it to Division Y for $29. Division Y spends another $13 to finish the product and sells it to outside customers for $49. What is the profit per unit for the COMPANY as a whole?",["$15", "$8", "$7", "$20", "$23"],"X profit = $29 − $21 = $8. Y profit = $49 − $29 − $13 = $7. Company = $8 + $7 = $15. Check without the transfer price: $49 − $21 − $13 = $15. The transfer price cancels out.","Decentralized outline p.6");
+Q("tx4","d-tp","Division X spends $29 to make a part and sells it to Division Y for $40. Division Y spends another $7 to finish the product and sells it to outside customers for $58. What is the profit per unit for the COMPANY as a whole?",["$22", "$11", "$18", "$33", "$29"],"X profit = $40 − $29 = $11. Y profit = $58 − $40 − $7 = $11. Company = $11 + $11 = $22. Check without the transfer price: $58 − $29 − $7 = $22. The transfer price cancels out.","Decentralized outline p.6");
+Q("tl0","d-tp","A selling division's part has variable cost $12 and fixed cost $6 per unit; one-half of the fixed cost could be avoided if it stopped making the part. The market price is $36. The division has full capacity. What is the LOWEST acceptable transfer price?",["$36", "$12", "$18", "$15", "$27"],"Full capacity → every unit sold inside means giving up an outside sale at the market price, so the lowest TP = market price = $36.","Decentralized outline p.5; Dexter solution #1, #3");
+Q("tl1","d-tp","A selling division's part has variable cost $56 and fixed cost $7 per unit; one-third of the fixed cost could be avoided if it stopped making the part. The market price is $66. The division has excess capacity. What is the LOWEST acceptable transfer price?",["$58.33", "$56", "$63", "$66", "$64.50"],"Excess capacity → lowest TP = avoidable cost = variable $56 + avoidable fixed $2.33 = $58.33. No outside sales are lost, so the seller only needs to cover the costs it would avoid.","Decentralized outline p.5; Dexter solution #1, #3");
+Q("tl2","d-tp","A selling division's part has variable cost $41 and fixed cost $3 per unit; one-half of the fixed cost could be avoided if it stopped making the part. The market price is $52. The division has excess capacity. What is the LOWEST acceptable transfer price?",["$42.50", "$41", "$44", "$52", "$48"],"Excess capacity → lowest TP = avoidable cost = variable $41 + avoidable fixed $1.50 = $42.50. No outside sales are lost, so the seller only needs to cover the costs it would avoid.","Decentralized outline p.5; Dexter solution #1, #3");
+Q("tl3","d-tp","A selling division's part has variable cost $32 and fixed cost $5 per unit; none of the fixed cost could be avoided if it stopped making the part. The market price is $43. The division has excess capacity. What is the LOWEST acceptable transfer price?",["$32", "$37", "$43", "$40", "$35"],"Excess capacity → lowest TP = avoidable cost = variable $32 + avoidable fixed $0 = $32. No outside sales are lost, so the seller only needs to cover the costs it would avoid.","Decentralized outline p.5; Dexter solution #1, #3");
+Q("tl4","d-tp","A selling division's part has variable cost $57 and fixed cost $6 per unit; none of the fixed cost could be avoided if it stopped making the part. The market price is $78. The division has excess capacity. What is the LOWEST acceptable transfer price?",["$57", "$63", "$78", "$70.50", "$51"],"Excess capacity → lowest TP = avoidable cost = variable $57 + avoidable fixed $0 = $57. No outside sales are lost, so the seller only needs to cover the costs it would avoid.","Decentralized outline p.5; Dexter solution #1, #3");
+
+const L=["A","B","C","D","E","F","G"];
+// every answer is written as choice A; shuffle the choices the same way on every device (lists with "of the above" keep their order)
+QB.forEach(q=>{ if(q.o.some(o=>/of the above|of these|none of|all of|both of/i.test(o))) return;
+  let s=[...q.id].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7); const idx=q.o.map((_,i)=>i);
+  for(let i=idx.length-1;i>0;i--){s=(Math.imul(s,1103515245)+12345)>>>0; const j=s%(i+1); [idx[i],idx[j]]=[idx[j],idx[i]]}
+  const ans=q.o[q.a]; q.o=idx.map(i=>q.o[i]); q.a=q.o.indexOf(ans); });
+const Qs=QB.filter(q=>TOPICS[q.t]);
+const QBY=Object.fromEntries(Qs.map(q=>[q.id,q]));
+const BATCH=10, KEY="mgr-drill-v1", MINWHY=10;
+
+// ---------- state: one record per player name ----------
+const S0=()=>({recs:{},batch:0,lastBatch:[],cur:null,updated:0});
+let ST=S0(), PLAYER=null;
+const nameKey=n=>n.trim().toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40);
+function loadLocal(){ST=S0(); if(!PLAYER) return; try{const s=JSON.parse(localStorage.getItem(KEY+"-p-"+PLAYER.key)||"null"); if(s&&s.recs) ST=Object.assign(S0(),s);}catch(e){}}
+function saveLocal(){snapPred();ST.updated=Date.now(); if(!PLAYER) return; try{localStorage.setItem(KEY+"-p-"+PLAYER.key,JSON.stringify(ST))}catch(e){}}
+function setPlayer(name){
+  const key=nameKey(name); if(!key) return false;
+  PLAYER={name:name.trim().slice(0,40),key}; try{localStorage.setItem(KEY+"-player",JSON.stringify(PLAYER))}catch(e){}
+  loadLocal(); showWho(); render(); loadPlayer(); return true;
+}
+function showWho(){document.getElementById("who").textContent=PLAYER?PLAYER.name:"—"}
+const ND=document.getElementById("nd"), NI=document.getElementById("nd-in");
+async function askName(){
+  try{NI.value=PLAYER?PLAYER.name:(JSON.parse(localStorage.getItem(KEY+"-player")||"null")||{}).name||""}catch(e){}
+  document.getElementById("nd-err").textContent=""; const k=document.getElementById("known"); k.innerHTML="";
+  if(!ND.open) ND.showModal(); NI.focus(); NI.select();
+  const list=await listKnown(); if(list.length&&ND.open){k.innerHTML=`<span class="hint" style="width:100%">Or continue as</span>`+list.map(x=>`<button type="button" class="btn ghost sm" data-n="${esc(x.name)}">${esc(x.name)} · ${x.answered}</button>`).join("");
+    k.querySelectorAll("button").forEach(b=>b.onclick=()=>{ND.close();setPlayer(b.dataset.n)})}
+}
+document.getElementById("nd-form").onsubmit=e=>{e.preventDefault(); if(!nameKey(NI.value)){document.getElementById("nd-err").textContent="Type a name with at least one letter or number.";NI.focus();return} ND.close(); setPlayer(NI.value)};
+ND.addEventListener("cancel",e=>{if(!PLAYER)e.preventDefault()});
+document.getElementById("switch").onclick=askName;
+try{const p=JSON.parse(localStorage.getItem(KEY+"-player")||"null"); if(p&&p.key&&p.name){PLAYER=p;loadLocal()}}catch(e){}
+function recOf(id){return ST.recs[id]}
+function record(id,picked){
+  const q=QBY[id]; const ok=picked===q.a;
+  const r=ST.recs[id]||{r:0,w:0,h:[],lb:0,why:[]}; if(!r.why) r.why=[];
+  ok?r.r++:r.w++; r.h=r.h.concat(ok?1:0).slice(-8); r.lb=ST.batch;
+  ST.recs[id]=r; return ok;
+}
+function saveWhy(id,text){
+  const r=ST.recs[id]; const q=QBY[id]; if(!r) return;
+  const p=r.pend||{p:"",at:new Date().toISOString()};
+  r.why=(r.why||[]).concat({t:text.trim(),p:p.p,c:q.o[q.a],at:p.at}).slice(-10); delete r.pend;
+  saveLocal(); pushRec(id);
+}
+const needsWhy=()=>false; // the typed-reason step was removed; old saved reasons still show
+
+// ---------- adaptive model ----------
+function topicStats(t){
+  let num=0,den=0,att=0,right=0;
+  for(const q of Qs){ if(q.t!==t) continue; const r=recOf(q.id); if(!r) continue;
+    att+=r.r+r.w; right+=r.r;
+    const h=r.h.slice(-4).reverse(); const ws=[1,.7,.5,.35];
+    h.forEach((v,i)=>{num+=ws[i]*v;den+=ws[i]}); }
+  const m=(num+1)/(den+2);
+  const status=den===0?"new":m<.55?"weak":m<.8?"shaky":"solid";
+  return {m,den,att,right,status};
+}
+function streak(r){let s=0;for(let i=r.h.length-1;i>=0&&r.h[i]===1;i--)s++;return s}
+const RETIRE=3;
+function retired(id){const r=recOf(id);return !!r&&streak(r)>=RETIRE}
+function tWeight(st){ if(st.status==="new") return 5; const weak=1-st.m; return .2+10*weak*weak }
+function qWeight(q){
+  let w=1; const r=recOf(q.id);
+  if(!r) w*=4;
+  else{ const last=r.h[r.h.length-1];
+    if(last===0) w*=3.5; if(r.w>=2) w*=1.5;
+    const s=streak(r); if(s>=2) w*=.25; else if(s===1) w*=.7;
+    if(ST.lastBatch.includes(q.id)&&last===1) w*=.15; }
+  return w;
+}
+function pick(pool,weights){let tot=weights.reduce((a,b)=>a+b,0),x=Math.random()*tot;for(let i=0;i<pool.length;i++){x-=weights[i];if(x<=0)return i}return pool.length-1}
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function startBatch(ids,label){
+  const ts=Object.fromEntries(Object.keys(TOPICS).map(t=>[t,topicStats(t)]));
+  ST.batch+=1; ST.cur={n:ST.batch,ids,idx:0,ans:{},label:label||"",before:Object.fromEntries(Object.keys(TOPICS).map(t=>[t,ts[t].m]))};
+  saveLocal(); pushMeta();
+}
+function buildBatch(){
+  const ts=Object.fromEntries(Object.keys(TOPICS).map(t=>[t,topicStats(t)]));
+  let chosen=[];
+  if(!Object.keys(ST.recs).length){
+    // diagnostic: round-robin across the four chapters, one topic at a time
+    const per=SEC_ORDER.map(s=>shuffle(Object.keys(TOPICS).filter(t=>TOPICS[t].s===s)));
+    for(let k=0;chosen.length<BATCH;k++){const list=per[k%per.length]; const t=list.shift(); if(!t) continue;
+      const c=Qs.filter(q=>q.t===t); chosen.push(c[Math.floor(Math.random()*c.length)].id)}
+  }else{
+    const perTopic={}; let pool=Qs.filter(q=>!retired(q.id));
+    if(pool.length<BATCH) pool=pool.concat(Qs.filter(q=>retired(q.id)).sort((a,b)=>(recOf(a.id).lb||0)-(recOf(b.id).lb||0)).slice(0,BATCH-pool.length));
+    const solids=Object.keys(ts).filter(t=>ts[t].status==="solid");
+    const c=pool.filter(q=>solids.includes(q.t));
+    if(c.length){ const ws=c.map(q=>{const r=recOf(q.id);return r?1+(ST.batch-(r.lb||0)):12});
+      const q=c[pick(c,ws)]; chosen.push(q.id); perTopic[q.t]=1; pool=pool.filter(p=>p.id!==q.id); }
+    while(chosen.length<BATCH&&pool.length){
+      let tops=[...new Set(pool.map(q=>q.t))].filter(t=>(perTopic[t]||0)<3); if(!tops.length) break;
+      const fresh=tops.filter(t=>ts[t].status==="new");
+      const usedNew=chosen.filter(id=>ts[QBY[id].t].status==="new").length;
+      const struggling=tops.filter(t=>ts[t].status==="weak"||ts[t].status==="shaky");
+      const used=chosen.filter(id=>["weak","shaky"].includes(ts[QBY[id].t].status)).length;
+      if(fresh.length&&usedNew<3) tops=fresh; else if(struggling.length&&used<6) tops=struggling;
+      const t=tops[pick(tops,tops.map(t=>tWeight(ts[t])/(1+(perTopic[t]||0))))];
+      const ok=pool.filter(q=>q.t===t); const q=ok[pick(ok,ok.map(qWeight))];
+      chosen.push(q.id); perTopic[q.t]=(perTopic[q.t]||0)+1; pool=pool.filter(p=>p.id!==q.id);
+    }
+    chosen=shuffle(chosen);
+  }
+  startBatch(chosen);
+}
+function missedIds(){return Object.keys(ST.recs).filter(id=>QBY[id]&&ST.recs[id].w>0)}
+function seenCount(){return Qs.filter(q=>recOf(q.id)).length}
+function buildUnseenBatch(){
+  const un=Qs.filter(q=>!recOf(q.id)); const byT={}; shuffle(un).forEach(q=>(byT[q.t]=byT[q.t]||[]).push(q.id));
+  const ids=[]; const tl=shuffle(Object.keys(byT)); for(let k=0;ids.length<BATCH&&k<400;k++){const l=byT[tl[k%tl.length]]; const id=l&&l.shift(); if(id) ids.push(id)}
+  startBatch(shuffle(ids),"New questions");
+}
+function buildOrderBatch(){
+  const ids=Qs.filter(q=>!recOf(q.id)).slice(0,BATCH).map(q=>q.id);
+  if(!ids.length) return buildBatch();
+  const q0=QBY[ids[0]]; startBatch(ids,"Learn in order · "+SECS[TOPICS[q0.t].s].split(" · ")[0]);
+}
+function buildMissBatch(){
+  const ids=missedIds().filter(id=>!retired(id)).sort((a,b)=>{const ra=recOf(a),rb=recOf(b);return (ra.h[ra.h.length-1]-rb.h[rb.h.length-1])||(rb.w-ra.w)});
+  startBatch(shuffle(ids.slice(0,BATCH)),"Missed questions");
+}
+
+// ---------- exam score predictor ----------
+const TW=(()=>{const w={};const tot=Object.values(SEC_EXAM).reduce((a,b)=>a+b,0);
+  for(const s of SEC_ORDER){const ts=Object.keys(TOPICS).filter(t=>TOPICS[t].s===s);ts.forEach(t=>w[t]=SEC_EXAM[s]/tot/ts.length)}return w})();
+function answerCount(){let n=0;for(const k in ST.recs){const r=ST.recs[k];n+=r.r+r.w}return n}
+function predict(){
+  let R=0,N=0; for(const k in ST.recs){const r=ST.recs[k];R+=r.r;N+=r.r+r.w}
+  const base=(R+.65*6)/(N+6), K=2.5; let score=0,vr=0,cov=0; const topics={};
+  for(const t in TOPICS){const st=topicStats(t); const num=st.m*(st.den+2)-1;
+    const n=st.den+.3*st.att+K, p=(num+.3*st.right+base*K)/n;
+    topics[t]=p; score+=TW[t]*p; vr+=TW[t]*TW[t]*p*(1-p)/n; if(st.den>0) cov+=TW[t]}
+  vr+=score*(1-score)/40; const sd=Math.sqrt(vr);
+  return {score,lo:Math.max(0,score-1.28*sd),hi:Math.min(1,score+1.28*sd),cov,n:N,topics}
+}
+function snapPred(){
+  const n=answerCount(); if(!n) return; const ph=ST.ph||(ST.ph=[]); const last=ph[ph.length-1];
+  if(last&&last.n===n) return; const p=predict(); const r=x=>Math.round(x*1000)/10;
+  ph.push({n,p:r(p.score),lo:r(p.lo),hi:r(p.hi),t:Date.now()});
+  if(ph.length>300) ST.ph=ph.filter((x,i)=>i===0||i===ph.length-1||i%2===0);
+}
+const grade=s=>s>=90?"A":s>=80?"B":s>=70?"C":s>=60?"D":"F";
+function predLine(){
+  const n=answerCount(); if(!n) return "";
+  snapPred(); const ph=ST.ph, cur=ph[ph.length-1]; const prev=ph.length>1?ph[Math.max(0,ph.length-11)]:null;
+  const d=prev?Math.round((cur.p-prev.p)*10)/10:0;
+  return `<p class="predline">Predicted exam score: <b>${Math.round(cur.p)}%</b> ${prev&&d?`<span class="${d>0?"up":"down"}">${d>0?"▲ +":"▼ −"}${Math.abs(d)} pts</span>`:""} <span class="hint">· see Progress for the trend</span></p>`;
+}
+function predChart(ph){
+  if(ph.length<2) return `<p class="hint">The graph fills in as you answer. Every answer adds a point.</p>`;
+  const W=640,H=200,pl=34,pr=10,pt=10,pb=26; const x0=ph[0].n,x1=ph[ph.length-1].n||1;
+  const lo=Math.max(0,Math.floor(Math.min(...ph.map(p=>p.lo))/10)*10-10), hi=Math.min(100,Math.ceil(Math.max(...ph.map(p=>p.hi))/10)*10);
+  const X=n=>pl+(W-pl-pr)*(x1===x0?1:(n-x0)/(x1-x0)), Y=v=>pt+(H-pt-pb)*(1-(v-lo)/(hi-lo||1));
+  const line=ph.map((p,i)=>(i?"L":"M")+X(p.n).toFixed(1)+" "+Y(p.p).toFixed(1)).join("");
+  const band=ph.map((p,i)=>(i?"L":"M")+X(p.n).toFixed(1)+" "+Y(p.hi).toFixed(1)).join("")+[...ph].reverse().map(p=>"L"+X(p.n).toFixed(1)+" "+Y(p.lo).toFixed(1)).join("")+"Z";
+  let grid=""; for(let v=lo;v<=hi;v+=10) grid+=`<line x1="${pl}" x2="${W-pr}" y1="${Y(v)}" y2="${Y(v)}" class="pg"/><text x="${pl-6}" y="${Y(v)+4}" class="pt" text-anchor="end">${v}</text>`;
+  const c=ph[ph.length-1];
+  return `<svg class="predsvg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Predicted score went from ${ph[0].p}% to ${c.p}% over ${c.n-x0} answers">${grid}
+  <path d="${band}" class="pb"/><path d="${line}" class="pl"/><circle cx="${X(c.n)}" cy="${Y(c.p)}" r="4.5" class="pd"/>
+  <text x="${pl}" y="${H-6}" class="pt">${x0} answers</text><text x="${W-pr}" y="${H-6}" class="pt" text-anchor="end">${c.n} answers</text></svg>`;
+}
+function predCard(){
+  const n=answerCount();
+  if(!n) return `<div class="card pred"><span class="eyebrow">Predicted exam score</span><p>Answer a batch and this will predict your Exam 3 score, then track it as you study.</p></div>`;
+  snapPred(); const p=predict(), ph=ST.ph, c=ph[ph.length-1];
+  const prev=ph.length>1?ph[Math.max(0,ph.length-11)]:null, d=prev?Math.round((c.p-prev.p)*10)/10:0, since=prev?c.n-prev.n:0;
+  const sure=p.cov<.6||n<60?"Rough guess so far":p.cov<.9||n<150?"Getting more reliable":"Fairly reliable";
+  const gains=Object.keys(TOPICS).map(t=>({t,g:TW[t]*(1-p.topics[t])})).sort((a,b)=>b.g-a.g).slice(0,3);
+  return `<div class="card pred"><span class="eyebrow">Predicted exam score</span>
+  <div class="predtop"><div><div class="big">${Math.round(c.p)}%</div><div class="hint">about a ${grade(c.p)} · likely between ${Math.round(c.lo)}% and ${Math.round(c.hi)}%</div></div>
+  <div class="predside">${prev?`<div class="${d>0?"up":d<0?"down":""}"><b>${d>0?"▲ +":d<0?"▼ −":""}${Math.abs(d)} pts</b> over your last ${since} answers</div>`:""}
+  <div class="hint">${sure}: based on ${n} answers, ${Math.round(p.cov*100)}% of exam topics tried.</div></div></div>
+  ${predChart(ph)}
+  <p class="hint">How it works: it estimates your chance of getting each topic right from your answers so far (recent ones count most), then weights the four chapters like the 40-question practice exam. Topics you haven’t tried are guessed from your overall accuracy, so the range narrows as you cover more.</p>
+  <b>Biggest points to gain</b><ul class="plain">${gains.map(x=>`<li>${esc(TOPICS[x.t].n)} <span class="hint">· now ${Math.round(p.topics[x.t]*100)}% · worth up to ${Math.round(x.g*1000)/10} pts</span></li>`).join("")}</ul></div>`;
+}
+
+// ---------- name-based saving (public site) ----------
+// Progress is one JSON blob per typed name, kept in this browser and in Supabase (mgr_load / mgr_save),
+// same setup as the RMI Exam 2 site. The blob holds every answer and every typed reason for a miss.
+const SB_URL="https://tcahkdavrvwrgkjhrmqd.supabase.co", SB_KEY="sb_publishable_YqSdN79t7LOG5wjCSDVBVw_l6SJGfUj";
+const syncEl=document.getElementById("sync");
+function setSync(t){syncEl.textContent=t}
+function mergeWhy(a,b){const m=new Map();[...(a||[]),...(b||[])].forEach(w=>{if(w&&w.t)m.set(w.at+"|"+w.t,w)});return [...m.values()].sort((x,y)=>String(x.at).localeCompare(String(y.at))).slice(-10)}
+const cloudName=()=>PLAYER.name.trim().replace(/\s+/g," ");
+async function rpc(fn,body){const r=await fetch(SB_URL+"/rest/v1/rpc/"+fn,{method:"POST",headers:{apikey:SB_KEY,"Content-Type":"application/json"},body:JSON.stringify(body)});
+  if(!r.ok) throw new Error(r.status); const t=await r.text(); return t?JSON.parse(t):null}
+let saveTimer=null, saving=false, again=false;
+function cloudSave(){clearTimeout(saveTimer); saveTimer=setTimeout(flush,1200)}
+async function flush(){ if(!PLAYER) return; if(saving){again=true;return} saving=true;
+  try{ do{again=false; await rpc("mgr_save",{p_name:cloudName(),p_data:Object.assign({},ST,{name:PLAYER.name})})}while(again); setSync("· saved for "+PLAYER.name) }
+  catch(e){ setSync("· saved on this device only") }
+  saving=false }
+async function initDb(){ if(PLAYER) loadPlayer(); else askName(); }
+let loadSeq=0;
+async function loadPlayer(){
+  if(!PLAYER) return; const me=PLAYER.key, seq=++loadSeq; setSync("· loading your saved progress…");
+  try{ const remote=await rpc("mgr_load",{p_name:cloudName()});
+    if(seq!==loadSeq||!PLAYER||PLAYER.key!==me) return;
+    if(remote&&remote.recs&&(+remote.rev||0)>(+ST.rev||0)){
+      // the cloud copy was corrected on purpose (admin edit): replace this device's copy instead of merging
+      ST=Object.assign(S0(),remote); delete ST.name;
+      try{localStorage.setItem(KEY+"-p-"+PLAYER.key,JSON.stringify(ST))}catch(e){}
+      render(); setSync("· progress loaded for "+PLAYER.name+" (updated)"); return;
+    }
+    if(remote&&remote.recs){
+      let localNewer=false;
+      for(const id in remote.recs){const v=remote.recs[id], l=ST.recs[id]; if(!QBY[id]||!v) continue;
+        const why=mergeWhy(l&&l.why,v.why);
+        if(!l||(v.r+v.w)>(l.r+l.w)) ST.recs[id]=Object.assign({},v,{why}); else { l.why=why; if((l.r+l.w)>(v.r+v.w)) localNewer=true } }
+      for(const id in ST.recs) if(!remote.recs[id]) localNewer=true;
+      if((+remote.updated||0)>(+ST.updated||0)){ ["batch","lastBatch","cur","exam","ph"].forEach(k=>{if(remote[k]!==undefined) ST[k]=remote[k]}) } else localNewer=true;
+      if(remote.name&&remote.name!==PLAYER.name){PLAYER.name=remote.name;try{localStorage.setItem(KEY+"-player",JSON.stringify(PLAYER))}catch(e){};showWho()}
+      try{localStorage.setItem(KEY+"-p-"+PLAYER.key,JSON.stringify(ST))}catch(e){}
+      render(); if(localNewer) flush();
+      setSync("· welcome back, progress loaded for "+PLAYER.name);
+    } else { if(Object.keys(ST.recs).length) flush(); setSync("· new name, progress will save as you go"); }
+  }catch(e){ setSync("· saved on this device only") }
+}
+function pushRec(){cloudSave()}
+function pushMeta(){cloudSave()}
+async function listKnown(){return []}
+async function remoteReset(){ try{await rpc("mgr_save",{p_name:cloudName(),p_data:Object.assign({},ST,{name:PLAYER.name})})}catch(e){} }
+
+
+// ---------- rendering helpers ----------
+const V=document.getElementById("view"); let view="drill";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const chip=(st,label)=>`<span class="chip ${st}">${label||({new:"New",weak:"Weak",shaky:"Shaky",solid:"Solid"})[st]}</span>`;
+const dayOf=q=>SECS[TOPICS[q.t].s].split(" · ")[0];
+function render(){ stopTimer(); if(!PLAYER){V.innerHTML=`<div class="card"><span class="eyebrow">Start here</span><h2 style="margin-top:6px">Type your name to begin</h2><p>Progress is saved under your name.</p><div class="actions"><button class="btn" id="askn">Enter my name</button></div></div>`;document.getElementById("askn").onclick=askName;return}
+  document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.v===view)); ({drill:renderDrill,exam:renderExam,misses:renderMisses,progress:renderProgress,guide:renderGuide})[view](); }
+function whyBox(id,label){
+  return `<div class="why"><label for="why-${id}">${label||"Why did you miss this one?"}</label>
+  <span class="hint">In your own words: what did you mix up, misread, or not know? Then say what the right answer means. You need a sentence before you can move on.</span>
+  <textarea id="why-${id}" data-id="${id}" placeholder="e.g. I mixed up preference and insistence. Preference still takes a substitute; insistence won’t."></textarea>
+  <div class="actions" style="margin-top:2px"><button class="btn" id="whysave-${id}" data-id="${id}" disabled>Save my reason</button><span class="hint" id="whyhint-${id}">A few more words needed</span></div></div>`;
+}
+function wireWhy(after){
+  V.querySelectorAll(".why textarea").forEach(ta=>{
+    const id=ta.dataset.id, btn=document.getElementById("whysave-"+id), hint=document.getElementById("whyhint-"+id);
+    try{const d=sessionStorage.getItem(KEY+"-draft-"+id); if(d) ta.value=d}catch(e){}
+    const upd=()=>{const ok=ta.value.trim().length>=MINWHY; btn.disabled=!ok; hint.textContent=ok?"Ctrl+Enter also saves":"A few more words needed"; try{sessionStorage.setItem(KEY+"-draft-"+id,ta.value)}catch(e){}};
+    ta.addEventListener("input",upd); upd();
+    const go=()=>{if(ta.value.trim().length<MINWHY) return; saveWhy(id,ta.value); try{sessionStorage.removeItem(KEY+"-draft-"+id)}catch(e){} after(id)};
+    btn.onclick=go;
+    ta.addEventListener("keydown",e=>{if(e.key==="Enter"&&(e.ctrlKey||e.metaKey)){e.preventDefault();go()}});
+  });
+}
+function lastWhy(id){const r=recOf(id);const w=r&&r.why&&r.why[r.why.length-1];return w?w.t:""}
+
+// ---------- timer: 2:30 per question (these are multi-step math questions) ----------
+const QSEC=150; let TICK=null;
+function stopTimer(){if(TICK){clearInterval(TICK);TICK=null}}
+const fmt=ms=>{const t=Math.max(0,Math.ceil(ms/1000));return Math.floor(t/60)+":"+String(t%60).padStart(2,"0")};
+function runTimer(endAt,lowMs,onEnd){stopTimer(); const el=document.getElementById("timer"); if(!el) return;
+  const tick=()=>{const left=endAt-Date.now(); el.textContent=fmt(left); el.classList.toggle("low",left<=lowMs);
+    if(left<=0){stopTimer(); onEnd()}};
+  tick(); if(endAt>Date.now()) TICK=setInterval(tick,250);}
+// ---------- drill ----------
+function renderDrill(){
+  stopTimer();
+  if(!ST.cur||ST.cur.ids.length===0) return renderStart();
+  const c=ST.cur; if(c.idx>=c.ids.length) return renderSummary();
+  const q=QBY[c.ids[c.idx]]; if(!q){c.idx++;return renderDrill()}
+  const st=topicStats(q.t); const given=c.ans[q.id];
+  const pips=c.ids.map((id,i)=>{const a=c.ans[id];return `<span class="pip ${a===undefined?(i===c.idx?"cur":""):(QBY[id]&&a===QBY[id].a?"ok":"no")}"></span>`}).join("");
+  let h=`<div class="batchbar"><span class="eyebrow">${c.label?esc(c.label)+" · ":""}Batch ${c.n} · Question ${c.idx+1} of ${c.ids.length}</span><div class="pips" aria-hidden="true">${pips}</div>${given===undefined?`<span class="timer" id="timer" title="2 minutes 30 seconds per question">2:30</span>`:given===-1?`<span class="timer out">Time’s up</span>`:""}</div>
+  <div class="card"><div class="qmeta">${chip(st.status,TOPICS[q.t].n)}<span class="src">${dayOf(q)}${q.src!=="New"?" · "+esc(q.src):""}</span></div>
+  <p class="qtext">${esc(q.q)}</p><div class="opts" role="group" aria-label="Answer choices">`;
+  q.o.forEach((o,i)=>{let cls="";if(given!==undefined){if(i===q.a)cls="right";else if(i===given)cls="wrong"}
+    h+=`<button class="opt ${cls}" data-i="${i}" ${given!==undefined?"disabled":""}><span class="L">${L[i]}</span><span>${esc(o)}</span></button>`});
+  h+=`</div>`;
+  if(given!==undefined){const ok=given===q.a; const waiting=!ok&&needsWhy(q.id);
+    h+=`<div class="fb ${ok?"":"no"}"><h3>${ok?"Correct":(given===-1?"Time’s up. ":"Not quite. ")+"The answer is "+L[q.a]+": "+esc(q.o[q.a])}</h3><p>${esc(q.x)}</p><div class="ref">Source: ${esc(q.ref)}</div>${slideBtns(q)}</div>`;
+    if(waiting) h+=whyBox(q.id);
+    else{ if(!ok&&lastWhy(q.id)) h+=`<div class="saved"><b>Your earlier reason</b>${esc(lastWhy(q.id))}</div>`;
+      h+=`<div class="actions"><button class="btn" id="next">${c.idx+1<c.ids.length?"Next question":"See batch results"}</button><span class="hint">Enter for next</span></div>`; }
+  }else h+=`<div class="actions"><span class="hint">Tap an answer, or press A to ${L[q.o.length-1]}.</span></div>`;
+  V.innerHTML=h+`</div>`;
+  V.querySelectorAll(".opt").forEach(b=>b.onclick=()=>answer(+b.dataset.i));
+  if(given===undefined){ if(c.tq!==q.id||!c.tend){c.tq=q.id;c.tend=Date.now()+QSEC*1000;saveLocal()}
+    runTimer(c.tend,20000,()=>{if(ST.cur===c&&c.ids[c.idx]===q.id&&view==="drill") answer(-1)}); }
+  wireWhy(()=>{renderDrill(); const n=document.getElementById("next"); if(n) n.focus({preventScroll:true})});
+  const ta=V.querySelector(".why textarea"); if(ta) ta.focus({preventScroll:true});
+  const n=document.getElementById("next"); if(n){n.onclick=next;if(!ta)n.focus({preventScroll:true})}
+}
+function answer(i){
+  stopTimer(); const c=ST.cur; const q=QBY[c.ids[c.idx]]; if(c.ans[q.id]!==undefined) return;
+  c.ans[q.id]=i; record(q.id,i); saveLocal(); pushRec(q.id); renderDrill();
+}
+function next(){const c=ST.cur; const id=c.ids[c.idx]; if(needsWhy(id)) return; c.idx++;saveLocal();renderDrill();window.scrollTo({top:0})}
+function renderStart(){
+  const seen=Object.keys(ST.recs).length; const nm=missedIds().filter(id=>!retired(id)).length;
+  V.innerHTML=`<div class="card"><span class="eyebrow">${seen?"Ready for batch "+(ST.batch+1):"Start here"}</span>
+  <h2 style="margin-top:6px">${seen?"Next batch, weighted to your weak spots":"First batch: a quick diagnostic"}</h2>
+  <p>${seen?"The next 10 questions come mostly from topics you are missing, plus questions you got wrong, which keep coming back until you get them right three times in a row. One question checks a topic you already know so it stays fresh.":"10 questions spread across all four chapters so the drill can see where you stand. After that, every batch leans toward what you miss."}</p>
+  <p><b>Two ways to study.</b> “Learn in order” walks through every question chapter by chapter, starting with the ideas and building up to the math, so you learn as you go. “Start batch” is the adaptive drill: it leans on whatever you miss.</p><p><b>You get 2:30 per question.</b> If the timer runs out, it counts as a miss.</p>
+  <p><b>When you miss a question</b>, you’ll see the right answer and a plain explanation before moving on. Every miss is listed in “My misses.”</p>
+  <p class="hint">${Qs.length} questions written from the chapter outlines, lecture transcripts and solved homework (Trendy Totes, Great Toy, Mitchell, Edelman, Epic Sports, Dexter and more). Every math question is computed, and every answer comes with a worked explanation. You have seen ${seenCount()} of them.</p>
+  <div class="actions">${Qs.length-seenCount()?`<button class="btn" id="goorder">Learn in order (${seenCount()} of ${Qs.length} done)</button>`:""}<button class="btn${Qs.length-seenCount()?" ghost":""}" id="go">Start batch ${ST.batch+1}</button>${nm?`<button class="btn ghost" id="gomiss">Redo ${Math.min(nm,BATCH)} missed questions</button>`:""}${seen&&Qs.length-seenCount()?`<button class="btn ghost" id="gounseen">Only questions I haven’t seen (${Qs.length-seenCount()} left)</button>`:""}</div></div>`;
+  document.getElementById("go").onclick=()=>{buildBatch();renderDrill()};
+  const gm=document.getElementById("gomiss"); if(gm) gm.onclick=()=>{buildMissBatch();renderDrill()};
+  const gu=document.getElementById("gounseen"); if(gu) gu.onclick=()=>{buildUnseenBatch();renderDrill()};
+  const go2=document.getElementById("goorder"); if(go2) go2.onclick=()=>{buildOrderBatch();renderDrill()};
+}
+function renderSummary(){
+  const c=ST.cur; const ids=c.ids.filter(id=>QBY[id]); const right=ids.filter(id=>c.ans[id]===QBY[id].a).length;
+  const missed=ids.filter(id=>c.ans[id]!==QBY[id].a);
+  const ts=Object.fromEntries(Object.keys(TOPICS).map(t=>[t,topicStats(t)]));
+  const weakest=Object.keys(TOPICS).filter(t=>ts[t].status!=="new").sort((a,b)=>ts[a].m-ts[b].m).slice(0,4).filter(t=>ts[t].status!=="solid");
+  const unseen=Object.keys(TOPICS).filter(t=>ts[t].status==="new").length;
+  const touched=[...new Set(ids.map(id=>QBY[id].t))];
+  let h=`<div class="card"><span class="eyebrow">Batch ${c.n} done</span>${predLine()}
+  <div class="sumgrid"><div><div class="big">${right}/${ids.length}</div><div class="hint">correct this batch</div></div>
+  <div><b>Next batch will focus on</b><ul class="plain">${weakest.length?weakest.map(t=>`<li>${esc(TOPICS[t].n)} ${chip(ts[t].status)}</li>`).join(""):"<li>Nothing weak right now. It will mix in topics you have not seen.</li>"}${unseen?`<li class="hint">${unseen} topics not tried yet</li>`:""}</ul></div></div>`;
+  h+=`<h2>Topics in this batch</h2>`+touched.map(t=>{const b=c.before[t]??ts[t].m,a=ts[t].m;const d=Math.round((a-b)*100);return `<div class="trow"><div class="nm">${esc(TOPICS[t].n)} ${chip(ts[t].status)}</div><div class="bar"><i class="${ts[t].status}" style="width:${Math.round(a*100)}%"></i></div><div class="tnum">${d>0?"+":""}${d}</div></div>`}).join("");
+  if(missed.length) h+=`<h2>What you missed</h2><div class="missed">${missed.map(id=>{const q=QBY[id];return `<div class="mrow"><b>${esc(q.q)}</b><span class="ans">Answer: ${esc(q.o[q.a])}</span>${lastWhy(id)?`<span><span class="hint">Your reason:</span> ${esc(lastWhy(id))}</span>`:""}${slideBtns(q)}</div>`}).join("")}</div><p class="hint">These questions come back until you get each one right three times in a row.</p>`;
+  h+=`<div class="actions"><button class="btn" id="go">Start batch ${ST.batch+1}</button>${Qs.length-seenCount()?`<button class="btn ghost" id="goorder2">Continue in order</button>`:""}${Qs.length-seenCount()?`<button class="btn ghost" id="gounseen2">Only unseen questions (${Qs.length-seenCount()} left)</button>`:""}<button class="btn ghost" id="pg">See all progress</button></div></div>`;
+  V.innerHTML=h;
+  document.getElementById("go").onclick=()=>{ST.lastBatch=c.ids.slice();buildBatch();renderDrill();window.scrollTo({top:0})};
+  document.getElementById("pg").onclick=()=>{view="progress";render()};
+  const go3=document.getElementById("goorder2"); if(go3) go3.onclick=()=>{ST.lastBatch=c.ids.slice();buildOrderBatch();renderDrill();window.scrollTo({top:0})};
+  const gu2=document.getElementById("gounseen2"); if(gu2) gu2.onclick=()=>{ST.lastBatch=c.ids.slice();buildUnseenBatch();renderDrill();window.scrollTo({top:0})};
+}
+
+// ---------- practice exam: 40 questions, graded at the end, every miss explained ----------
+function buildExam(){
+  let ids=[];
+  for(const s of SEC_ORDER){ const pool=shuffle(Qs.filter(q=>TOPICS[q.t].s===s));
+    // spread across topics: round-robin through topics in this section
+    const byT={}; pool.forEach(q=>(byT[q.t]=byT[q.t]||[]).push(q)); const tl=shuffle(Object.keys(byT)); const got=[];
+    for(let k=0;got.length<SEC_EXAM[s]&&k<200;k++){const t=tl[k%tl.length]; const q=byT[t].shift(); if(q) got.push(q.id)}
+    ids=ids.concat(got); }
+  ST.exam={ids:shuffle(ids),idx:0,ans:{},done:false,n:(ST.exam?.n||0)+1,end:Date.now()+ids.length*QSEC*1000}; saveLocal();
+}
+function renderExam(){
+  const E=ST.exam;
+  if(!E){V.innerHTML=`<div class="card"><span class="eyebrow">Like the real exam</span><h2 style="margin-top:6px">40-question practice exam</h2>
+    <p><b>Timed: 100 minutes</b> (2:30 per question). When time runs out, the exam turns in by itself and blank answers count as wrong.</p>
+    <p>The real exam is 40 multiple-choice questions. This one draws from all four chapters: budgeting, flexible budgets, standard cost variances and decentralized performance. No answers are shown until you finish. Then you get a score for each chapter and every miss explained.</p>
+    <p class="hint">Your answers also count toward the drill, so anything you miss here shows up more in your batches.</p>
+    <div class="actions"><button class="btn" id="go">Start practice exam</button></div></div>`;
+    document.getElementById("go").onclick=()=>{buildExam();renderExam()}; return;}
+  if(E.done) return renderExamResults();
+  const q=QBY[E.ids[E.idx]]; const given=E.ans[q.id]; const answered=Object.keys(E.ans).length;
+  let h=`<div class="batchbar"><span class="eyebrow">Practice exam ${E.n} · Question ${E.idx+1} of ${E.ids.length}</span><span class="hint">${answered} answered</span><span class="timer" id="timer" title="100 minutes total">--:--</span></div>
+  <div class="card"><div class="qmeta"><span class="src">${dayOf(q)}</span></div><p class="qtext">${esc(q.q)}</p><div class="opts" role="group" aria-label="Answer choices">`;
+  q.o.forEach((o,i)=>{h+=`<button class="opt ${given===i?"sel":""}" data-i="${i}"><span class="L">${L[i]}</span><span>${esc(o)}</span></button>`});
+  h+=`</div><div class="actions"><button class="btn ghost" id="prev" ${E.idx===0?"disabled":""}>Back</button><button class="btn" id="nxt">${E.idx+1<E.ids.length?"Next":"Review and finish"}</button><button class="btn ghost" id="fin">Finish exam</button><span class="hint" id="finh"></span></div>
+  <div class="qgrid" aria-label="Jump to question">${E.ids.map((id,i)=>`<button class="${E.ans[id]!==undefined?"done":""} ${i===E.idx?"cur":""}" data-j="${i}">${i+1}</button>`).join("")}</div></div>`;
+  V.innerHTML=h;
+  V.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{E.ans[q.id]=+b.dataset.i;saveLocal();renderExam()});
+  V.querySelectorAll(".qgrid button").forEach(b=>b.onclick=()=>{E.idx=+b.dataset.j;saveLocal();renderExam()});
+  document.getElementById("prev").onclick=()=>{E.idx--;saveLocal();renderExam()};
+  document.getElementById("nxt").onclick=()=>{if(E.idx+1<E.ids.length){E.idx++;saveLocal();renderExam();window.scrollTo({top:0})}else finishExam()};
+  if(!E.end){E.end=Date.now()+E.ids.length*QSEC*1000;saveLocal()}
+  runTimer(E.end,5*60000,()=>{if(ST.exam===E&&!E.done) finishExam()});
+  const fb=document.getElementById("fin"); let armed=false;
+  fb.onclick=()=>{const left=E.ids.length-Object.keys(E.ans).length; if(left&&!armed){armed=true;fb.textContent="Tap again to finish";document.getElementById("finh").textContent=left+" unanswered will count as wrong.";return} finishExam()};
+}
+function finishExam(){
+  stopTimer(); const E=ST.exam; E.done=true;
+  for(const id of E.ids){ const a=E.ans[id]; record(id,a===undefined?-1:a); pushRec(id); }
+  saveLocal(); renderExam(); window.scrollTo({top:0});
+}
+function renderExamResults(){
+  const E=ST.exam; const ok=id=>E.ans[id]===QBY[id].a; const right=E.ids.filter(ok).length;
+  const missed=E.ids.filter(id=>!ok(id)); const left=missed.filter(needsWhy).length;
+  let h=`<div class="card"><span class="eyebrow">Practice exam ${E.n} finished</span>${predLine()}<div class="sumgrid"><div><div class="big">${Math.round(right/E.ids.length*100)}%</div><div class="hint">${right} of ${E.ids.length} correct</div></div><div><b>By chapter</b><ul class="plain">`;
+  for(const s of SEC_ORDER){const ids=E.ids.filter(id=>TOPICS[QBY[id].t].s===s);if(!ids.length)continue;const r=ids.filter(ok).length;const f=r/ids.length;
+    h+=`<li>${esc(SECS[s])}: ${r}/${ids.length} ${chip(f>=.8?"solid":f>=.6?"shaky":"weak")}</li>`}
+  h+=`</ul></div></div><div class="qgrid">${E.ids.map((id,i)=>`<button class="${ok(id)?"ok":"no"}" data-j="${i}" aria-label="Question ${i+1}" tabindex="-1">${i+1}</button>`).join("")}</div></div>`;
+  if(missed.length){
+    h+=`<div class="card"><span class="eyebrow">${missed.length} missed</span><h2 style="margin-top:6px">What you missed</h2><p class="hint">Read the right answer and the explanation for each one. These questions come back in your drill batches.</p><div class="missed">`;
+    missed.forEach(id=>{const q=QBY[id];const a=E.ans[id];
+      h+=`<div id="m-${id}" class="mrow"><span class="src">${dayOf(q)} · ${esc(TOPICS[q.t].n)}</span><b>${esc(q.q)}</b>
+      <span class="you">${a===undefined?"Not answered":"You said "+esc(q.o[a])}</span><span class="ans">Answer: ${esc(q.o[q.a])}</span>
+      <p class="note" style="color:var(--ink)">${esc(q.x)} <span class="src">${esc(q.ref)}</span></p>${slideBtns(q)}
+      ${lastWhy(id)?`<div class="saved"><b>Your earlier reason</b>${esc(lastWhy(id))}</div>`:""}</div>`});
+    h+=`</div></div>`;
+  }
+  h+=`<div class="actions"><button class="btn" id="again" ${left?"disabled":""}>Take a new practice exam</button><button class="btn ghost" id="todrill" ${left?"disabled":""}>Drill my weak spots</button>${left?`<span class="hint">Write a reason for the ${left} remaining miss${left>1?"es":""} first.</span>`:""}</div>`;
+  V.innerHTML=h;
+  wireWhy(id=>{const y=window.scrollY;renderExamResults();window.scrollTo({top:y})});
+  document.getElementById("again").onclick=()=>{buildExam();renderExam();window.scrollTo({top:0})};
+  document.getElementById("todrill").onclick=()=>{view="drill";render()};
+}
+
+// ---------- my misses ----------
+let missFilter="all"; try{missFilter=localStorage.getItem(KEY+"-mf")||"all"}catch(e){}
+function renderMisses(){
+  const all=missedIds();
+  const ids=all.filter(id=>missFilter==="all"||TOPICS[QBY[id].t].s===missFilter)
+    .sort((a,b)=>{const wa=recOf(a).why||[],wb=recOf(b).why||[];return String((wb[wb.length-1]||{}).at||"").localeCompare(String((wa[wa.length-1]||{}).at||""))});
+  let h=`<div class="card"><span class="eyebrow">Your own words</span><h2 style="margin-top:6px">My misses</h2>
+  <p>Every question you’ve missed, with the right answer and explanation. A fast way to review the night before the exam.</p>
+  <div class="actions" style="margin-top:8px"><label class="hint" for="mf">Show</label><select id="mf"><option value="all">All chapters (${all.length})</option>${SEC_ORDER.map(s=>{const n=all.filter(id=>TOPICS[QBY[id].t].s===s).length;return `<option value="${s}" ${missFilter===s?"selected":""}>${esc(SECS[s])} (${n})</option>`}).join("")}</select>
+  ${missedIds().filter(id=>!retired(id)).length?`<button class="btn sm" id="redo">Drill these again</button>`:""}</div></div>`;
+  if(!ids.length) h+=`<div class="card"><p>${all.length?"No misses for this chapter yet.":"No misses yet. When you miss a question in the drill or the practice exam, it lands here."}</p></div>`;
+  else h+=`<div class="card"><div class="missed">${ids.map(id=>{const q=QBY[id],r=recOf(id);const st=retired(id)?chip("solid","Fixed: right 3× in a row"):chip(r.h[r.h.length-1]?"shaky":"weak",r.h[r.h.length-1]?"Got it right last time":"Still missing");
+    return `<div class="mrow"><span class="src">${dayOf(q)} · ${esc(TOPICS[q.t].n)} · missed ${r.w}×</span> <span>${st}</span><b>${esc(q.q)}</b><span class="ans">Answer: ${esc(q.o[q.a])}</span>
+    ${(r.why||[]).slice().reverse().map(w=>`<div class="saved"><b>You picked “${esc(w.p)}”${w.at?" · "+esc(new Date(w.at).toLocaleDateString()):""}</b>${esc(w.t)}</div>`).join("")}
+    ${needsWhy(id)?`<p class="hint">Reason not written yet. Finish it where you missed it.</p>`:""}
+    <details><summary class="hint" style="cursor:pointer">Explanation</summary><p class="note" style="color:var(--ink)">${esc(q.x)} <span class="src">${esc(q.ref)}</span></p>${slideBtns(q)}</details></div>`}).join("")}</div></div>`;
+  V.innerHTML=h;
+  document.getElementById("mf").onchange=e=>{missFilter=e.target.value;try{localStorage.setItem(KEY+"-mf",missFilter)}catch(_){};renderMisses()};
+  const rd=document.getElementById("redo"); if(rd) rd.onclick=()=>{buildMissBatch();view="drill";render()};
+}
+
+// ---------- progress & guide ----------
+function renderProgress(){
+  const ts=Object.fromEntries(Object.keys(TOPICS).map(t=>[t,topicStats(t)]));
+  const tot=Object.values(ST.recs).reduce((a,r)=>a+r.r+r.w,0), rt=Object.values(ST.recs).reduce((a,r)=>a+r.r,0);
+  const counts={weak:0,shaky:0,solid:0,new:0}; Object.values(ts).forEach(s=>counts[s.status]++);
+  let h=predCard()+`<div class="sumgrid"><div><div class="big">${tot?Math.round(rt/tot*100):0}%</div><div class="hint">${rt} of ${tot} answers correct · ${ST.batch} batches</div></div>
+  <div>${chip("weak")} ${counts.weak} &nbsp;${chip("shaky")} ${counts.shaky} &nbsp;${chip("solid")} ${counts.solid} &nbsp;${chip("new")} ${counts.new}<p class="hint">Mastery weighs your last few tries on each question most, so old mistakes fade once you fix them.</p><p class="hint">${Qs.filter(q=>retired(q.id)).length} of ${Qs.length} questions retired (right ${RETIRE} times in a row), so drills skip them. Miss one in a practice exam and it comes back.</p></div></div>`;
+  for(const s of SEC_ORDER){
+    h+=`<h3 class="mod">${esc(SECS[s])}</h3>`;
+    Object.keys(TOPICS).filter(t=>TOPICS[t].s===s).forEach(t=>{const x=ts[t];
+      h+=`<div class="trow"><div class="nm">${esc(TOPICS[t].n)} ${chip(x.status)}</div><div class="bar"><i class="${x.status}" style="width:${x.status==="new"?0:Math.round(x.m*100)}%"></i></div><div class="tnum">${x.att?x.right+"/"+x.att:"–"}</div></div>`});
+  }
+  h+=`<div class="actions" style="margin-top:28px"><button class="btn danger" id="reset">Reset all progress</button><span class="hint" id="rsh"></span></div>`;
+  V.innerHTML=h;
+  const rb=document.getElementById("reset"); let armed=false;
+  rb.onclick=async()=>{ if(!armed){armed=true;rb.textContent="Tap again to erase everything";document.getElementById("rsh").textContent=`This clears every answer and reason saved under “${PLAYER.name}”, on all devices.`;return}
+    const ids=Object.keys(ST.recs); ST=S0(); saveLocal();
+    await remoteReset(ids);
+    render(); };
+}
+function renderGuide(){
+  const ts=Object.fromEntries(Object.keys(TOPICS).map(t=>[t,topicStats(t)]));
+  const weak=Object.keys(TOPICS).filter(t=>ts[t].status==="weak"||ts[t].status==="shaky");
+  let h=`<div class="guide"><div class="callout"><b>How to use this guide.</b> Each chapter lists the formulas and rules from the outlines. The math on the exam follows the same few patterns: budget schedules (sales, collections, production, materials, payments, cash), flexible budget and activity/spending variances, price/quantity and rate/efficiency variances, ROI and residual income, and transfer prices. Learn the formula, then practice it in “Learn in order.”${weak.length?`<br><br><b>Your weak spots right now:</b> ${weak.map(t=>esc(TOPICS[t].n)).join(", ")}.`:""}</div>`;
+  for(const s of SEC_ORDER){
+    h+=`<section><h3 class="mod">${esc(SECS[s])}</h3>`;
+    Object.keys(TOPICS).filter(t=>TOPICS[t].s===s).forEach(t=>{
+      h+=`<h4>${esc(TOPICS[t].n)} ${chip(ts[t].status)}</h4><ul class="plain">${TOPICS[t].g.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`});
+    h+=`</section>`;
+  }
+  V.innerHTML=h+`</div>`;
+}
+
+// ---------- slide viewer: refs like "D12 slide 23", "D10 slides 34-36" ----------
+const DECKS={};
+function slidesFor(q){
+  const out=[]; const add=(d,n)=>{if(DECKS[d]&&n>=1&&n<=DECKS[d]&&!out.some(s=>s.d===d&&s.n===n)&&out.length<6)out.push({d,n})};
+  for(const m of (q.ref||"").matchAll(/D(1[0-5])\s+slides?\s+([\d][\d,\s\-–]*)/g))
+    for(const part of m[2].split(",")){const [a,b]=part.trim().split(/[-–]/).map(Number); if(a) for(let n=a;n<=(b||a);n++) add("d"+m[1],n)}
+  return out;
+}
+const slideName=s=>"Day "+s.d.slice(1)+" · slide "+s.n;
+function slideBtns(q){const ss=slidesFor(q); if(!ss.length) return "";
+  return `<div class="slides">${ss.map(s=>`<button class="slidebtn" data-d="${s.d}" data-n="${s.n}">▶ Day ${s.d.slice(1)} slide ${s.n}</button>`).join("")}</div>`}
+const SV=document.getElementById("sv"); let svCur=null;
+function showSlide(d,n){ n=Math.max(1,Math.min(DECKS[d],n)); svCur={d,n}; const src=`slides/${d}/${n}.jpg`;
+  const img=document.getElementById("sv-img"); img.src=src; img.alt=slideName(svCur);
+  document.getElementById("sv-t").textContent=slideName(svCur); document.getElementById("sv-open").href=src;
+  document.getElementById("sv-prev").disabled=n<=1; document.getElementById("sv-next").disabled=n>=DECKS[d];
+  if(!SV.open) SV.showModal(); }
+document.addEventListener("click",e=>{const b=e.target.closest(".slidebtn"); if(b){e.preventDefault();showSlide(b.dataset.d,+b.dataset.n)}});
+document.getElementById("sv-x").onclick=()=>SV.close();
+document.getElementById("sv-prev").onclick=()=>showSlide(svCur.d,svCur.n-1);
+document.getElementById("sv-next").onclick=()=>showSlide(svCur.d,svCur.n+1);
+SV.addEventListener("click",e=>{if(e.target===SV)SV.close()});
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{view=b.dataset.v;try{localStorage.setItem(KEY+"-view",view)}catch(e){};render()});
+try{const v=localStorage.getItem(KEY+"-view");if(v&&["drill","exam","misses","progress","guide"].includes(v))view=v}catch(e){}
+document.addEventListener("keydown",e=>{
+  if(SV.open){if(e.key==="ArrowLeft"){e.preventDefault();showSlide(svCur.d,svCur.n-1)}else if(e.key==="ArrowRight"){e.preventDefault();showSlide(svCur.d,svCur.n+1)}return}
+  const tag=document.activeElement&&document.activeElement.tagName; if(!PLAYER||tag==="TEXTAREA"||tag==="SELECT"||tag==="INPUT"||document.activeElement?.classList.contains("slidebtn")) return;
+  if(e.metaKey||e.ctrlKey||e.altKey) return;
+  if(view==="exam"&&ST.exam&&!ST.exam.done){const q=QBY[ST.exam.ids[ST.exam.idx]];const i=L.indexOf(e.key.toUpperCase());if(i>=0&&i<q.o.length){e.preventDefault();ST.exam.ans[q.id]=i;saveLocal();renderExam()}return}
+  if(view!=="drill"||!ST.cur||ST.cur.idx>=ST.cur.ids.length) return;
+  const q=QBY[ST.cur.ids[ST.cur.idx]]; if(!q) return;
+  if(ST.cur.ans[q.id]===undefined){const i=L.indexOf(e.key.toUpperCase()); if(i>=0&&i<q.o.length){e.preventDefault();answer(i)}}
+  else if(e.key==="Enter"&&document.activeElement?.id!=="next"){e.preventDefault();next()}
+});
+showWho(); render(); initDb();
+</script>
+
+</body></html>
